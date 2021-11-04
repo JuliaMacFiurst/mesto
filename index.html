@@ -37,65 +37,65 @@
         </section>
         <section class="places">
           <ul class="places__list">
-            <li class="place__item">
+            <li class="place">
               <img class="place__photo" src="./images/timna.jpg" alt="Тимна" />
               <div class="place__description">
-                <p class="place__title">Тимна</p>
+                <h2 class="place__title">Тимна</h2>
                 <button class="place__like-button"></button>
               </div>
             </li>
-            <li class="place__item">
+            <li class="place">
               <img
                 class="place__photo"
                 src="./images/dead_sea.jpg"
                 alt="Мертвое море"
               />
               <div class="place__description">
-                <p class="place__title">Мёртвое море</p>
+                <h2 class="place__title">Мёртвое море</h2>
                 <button class="place__like-button"></button>
               </div>
             </li>
-            <li class="place__item">
+            <li class="place">
               <img
                 class="place__photo"
                 src="./images/mordor_tower.jpg"
                 alt="Солнечная электростанция в пустыне Негев"
               />
               <div class="place__description">
-                <p class="place__title">Солнечная башня</p>
+                <h2 class="place__title">Солнечная башня</h2>
                 <button class="place__like-button"></button>
               </div>
             </li>
-            <li class="place__item">
+            <li class="place">
               <img
                 class="place__photo"
                 src="./images/jerusalem.jpg"
                 alt="Стена Плача"
               />
               <div class="place__description">
-                <p class="place__title">Стена Плача</p>
+                <h2 class="place__title">Стена Плача</h2>
                 <button class="place__like-button"></button>
               </div>
             </li>
-            <li class="place__item">
+            <li class="place">
               <img
                 class="place__photo"
                 src="./images/terraces_bahai.jpg"
                 alt="Бахайские сады"
               />
               <div class="place__description">
-                <p class="place__title">Бахайские сады</p>
+                <h2 class="place__title">Бахайские сады</h2>
                 <button class="place__like-button"></button>
               </div>
             </li>
-            <li class="place__item">
+            <li class="place">
               <img
                 class="place__photo"
                 src="./images/kineret.jpg"
                 alt="Кинерет"
               />
               <div class="place__description">
-                <p class="place__title">Кинерет</p>
+                <h2 class="place__title">Кинерет</h2>
                 <button class="place__like-button"></button>
               </div>
             </li>
@@ -105,8 +105,9 @@
       <footer class="footer">
         <p class="footer__copyrights">&copy; 2021 Mesto Russia</p>
       </footer>
-      <div class="popup">
-        <section class="popup__container">
+      <section class="popup">
+        <div
+          class="popup__container">
           <form class="popup__form">
             <h2 class="popup__title">Редактировать профиль</h2>
             <input
@@ -121,11 +122,12 @@
               class="popup__input"
               placeholder="Исследователь океана"
             />
-            <button type="submit" class="popup__button">Сохранить</button>
+            <button type="submit" class="button popup__sbmt-button">Сохранить</button>
           </form>
-          <button class="popup__close-button"></button>
-        </section>
-      </div>
+          <button class="button popup__close-button"></button>
+        </div>
+      </section>
     </div>
+    <script src="./pages/index.js"></script>
   </body>
 </html>
