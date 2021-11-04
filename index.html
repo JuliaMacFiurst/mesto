@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Сервис Mesto, здесь можно делиться фотографиями Ваших путешествий"
+    />
+    <meta name="keywords" content="Путешествия, Израиль, Яндекс, Место" />
+    <meta name="author" content="Юлия Махлина" />
+    <link rel="stylesheet" href="" />
+    <title>Место</title>
+  </head>
+  <body class="page">
+    <div class="page__container">
+      <header class="header">
+        <img
+          class="header__logo"
+          src="./images/mesto_logo.png"
+          alt="логотип Место"
+        />
+      </header>
+      <main class="main">
+        <section class="profile">
+          <img
+            class="profile__avatar"
+            src="./images/profile_avatar.png"
+            alt="Аватар путешественника"
+          />
+          <div class="profile__info">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <button class="button profile__edit-button"></button>
+            <p class="profile__about">Исследователь океана</p>
+          </div>
+          <button class="button profile__add-button"></button>
+        </section>
+        <section class="places">
+          <ul class="places__list">
+            <li class="place__item">
+              <img class="place__photo" src="./images/timna.jpg" alt="Тимна" />
+              <div class="place__description">
+                <p class="place__title">Тимна</p>
+                <button class="place__like-button"></button>
+              </div>
+            </li>
+            <li class="place__item">
+              <img
+                class="place__photo"
+                src="./images/dead_sea.jpg"
+                alt="Мертвое море"
+              />
+              <div class="place__description">
+                <p class="place__title">Мёртвое море</p>
+                <button class="place__like-button"></button>
+              </div>
+            </li>
+            <li class="place__item">
+              <img
+                class="place__photo"
+                src="./images/mordor_tower.jpg"
+                alt="Солнечная электростанция в пустыне Негев"
+              />
+              <div class="place__description">
+                <p class="place__title">Солнечная башня</p>
+                <button class="place__like-button"></button>
+              </div>
+            </li>
+            <li class="place__item">
+              <img
+                class="place__photo"
+                src="./images/jerusalem.jpg"
+                alt="Стена Плача"
+              />
+              <div class="place__description">
+                <p class="place__title">Стена Плача</p>
+                <button class="place__like-button"></button>
+              </div>
+            </li>
+            <li class="place__item">
+              <img
+                class="place__photo"
+                src="./images/terraces_bahai.jpg"
+                alt="Бахайские сады"
+              />
+              <div class="place__description">
+                <p class="place__title">Бахайские сады</p>
+                <button class="place__like-button"></button>
+              </div>
+            </li>
+            <li class="place__item">
+              <img
+                class="place__photo"
+                src="./images/kineret.jpg"
+                alt="Кинерет"
+              />
+              <div class="place__description">
+                <p class="place__title">Кинерет</p>
+                <button class="place__like-button"></button>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </main>
+      <footer class="footer">
+        <p class="footer__copyrights">&copy; 2021 Mesto Russia</p>
+      </footer>
+      <div class="popup popup__profile-edit">
+        <section class="popup__window">
+          <form class="popup__form">
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <input
+              type="text"
+              name="userName"
+              class="popup__input"
+              placeholder="Жак-Ив Кусто"
+            />
+            <input
+              type="text"
+              name="userAbout"
+              class="popup__input"
+              placeholder="Исследователь океана"
+            />
+            <button type="submit" class="popup__button">Сохранить</button>
+          </form>
+          <button class="popup__close-button"></button>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>
