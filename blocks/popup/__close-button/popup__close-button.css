@@ -7,12 +7,13 @@
   cursor: pointer;
   border: none;
   background: transparent;
+  padding: 0;
 }
 
 .popup__close-button::before {
   position: absolute;
   content: "";
-  height: 30px;
+  height: 20px;
   border: 3px solid white;
   border-radius: 2px;
   top: 0;
@@ -22,7 +23,7 @@
 .popup__close-button::after {
   position: absolute;
   content: "";
-  height: 30px;
+  height: 20px;
   border: 3px solid white;
   top: 0;
   transform: skew(-45deg);
