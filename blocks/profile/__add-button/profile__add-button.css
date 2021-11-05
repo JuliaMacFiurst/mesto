@@ -11,3 +11,16 @@
   box-sizing: border-box;
   background-repeat: no-repeat;
 }
+
+@media screen and (max-width: 720px) {
+  .profile__add-button {
+    margin: 36px auto 0;
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .profile__add-button {
+    width: 100%;
+  }
+}

@@ -29,3 +29,20 @@
   transform: skew(-45deg);
   border-radius: 2px;
 }
+
+@media screen and (max-width: 550px) {
+  .popup__close-button {
+    width: 20px;
+    height: 20px;
+    top: -30px;
+    right: 0;
+  }
+  .popup__close-button::before {
+    height: 10px;
+    border: 2px solid white;
+  }
+  .popup__close-button::after {
+    height: 10px;
+    border: 2px solid white;
+  }
+}

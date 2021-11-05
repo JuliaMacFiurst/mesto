@@ -8,3 +8,10 @@
   padding: 0;
   margin: 0;
 }
+
+@media screen and (max-width: 920px) {
+  .footer__copyrights {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}

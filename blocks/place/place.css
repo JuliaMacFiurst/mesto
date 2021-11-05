@@ -1,6 +1,16 @@
 .place {
+  max-width: 282px;
+  min-width: 282px;
+  max-height: 361px;
   background: #ffffff;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
   overflow: hidden;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 920px) {
+  .place {
+    max-width: 100%;
+  }
 }

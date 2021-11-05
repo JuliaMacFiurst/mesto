@@ -21,3 +21,18 @@
 .popup__sbmt-button:hover {
   opacity: 0.8;
 }
+
+@media screen and (max-width: 850px) {
+  .popup__sbmt-button {
+    font-size: 14px;
+    line-height: 1.22;
+    margin: 45px 22px 25px;
+    max-width: 238px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .popup__sbmt-button {
+    margin: 45px auto 25px;
+  }
+}

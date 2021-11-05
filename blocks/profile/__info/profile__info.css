@@ -6,3 +6,11 @@
   grid-column-gap: 25px;
   grid-row-gap: 16px;
 }
+
+@media screen and (max-width: 700px) {
+  .profile__info {
+    max-width: 282px;
+    grid-column-gap: 10px;
+    grid-template-columns: 189px 1fr;
+  }
+}
