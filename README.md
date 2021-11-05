@@ -24,4 +24,4 @@
 
 
  
-Ссылка на проект [ТУТ](git@github.com:JuliaMacFiurst/mesto.git)
+Ссылка на проект [ТУТ](https://juliamacfiurst.github.io/mesto/)
