@@ -22,14 +22,14 @@ document.addEventListener("keyup", (event) => {
 });
 
 let formElement = document.querySelector(".popup__form");
-let nameInput = document.querySelector(".author__name");
-let jobInput = document.querySelector(".author__about");
+let nameInput = document.querySelector(".popup__name");
+let jobInput = document.querySelector(".popup__about");
 
 function formSubmitHandler(evt) {
   evt.preventDefault();
 
-  let nameValue = document.querySelector(".author__name").value;
-  let jobValue = document.querySelector(".author__about").value;
+  let nameValue = document.querySelector(".popup__name").value;
+  let jobValue = document.querySelector(".popup__about").value;
 
   document.querySelector(".profile__name").textContent = nameValue;
   document.querySelector(".profile__about").textContent = jobValue;
