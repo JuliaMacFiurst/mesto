@@ -3,10 +3,10 @@
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
-  line-height: 1.21;
+  line-height: 17px;
   color: #000000;
   border: none;
-  border-bottom: 1px solid #000000;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
   padding: 0 0 13px 0;
   align-self: center;
   width: 100%;
@@ -22,9 +22,6 @@
 
 @media screen and (max-width: 850px) {
   .popup__input {
-    font-size: 14px;
-    line-height: 1.22;
-    margin: 0 22px;
     max-width: 238px;
   }
 }

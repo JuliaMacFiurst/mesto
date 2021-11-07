@@ -3,7 +3,7 @@
   display: block;
   width: 127px;
   height: 127px;
-  margin-right: 40px;
+  margin-right: 30px;
 }
 @media screen and (max-width: 710px) {
   .profile__avatar {

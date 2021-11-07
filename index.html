@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
+    <meta 
+      charset="UTF-8" />
+    <meta 
+      name="viewport" 
+      content="width=device-width, initial-scale=1" />
+    <meta 
       name="description"
       content="Сервис Mesto, здесь можно делиться фотографиями Ваших путешествий"
     />
-    <meta name="keywords" content="Путешествия, Израиль, Яндекс, Место" />
-    <meta name="author" content="Юлия Махлина" />
+    <meta 
+      name="keywords" 
+      content="Путешествия, Израиль, Яндекс, Место" />
+    <meta 
+      name="author" 
+      content="Юлия Махлина" />
     <link rel="stylesheet" href="./pages/index.css" />
     <title>Место</title>
   </head>
@@ -17,7 +24,7 @@
       <header class="header page__header">
         <img
           class="header__logo"
-          src="./images/mesto_logo.png"
+          src="./images/mesto_logo.svg"
           alt="логотип Место"
         />
       </header>
@@ -25,15 +32,23 @@
         <section class="profile page__profile">
           <img
             class="profile__avatar"
-            src="./images/profile_avatar.png"
+            src="./images/profile_avatar.jpg"
             alt="Аватар путешественника"
           />
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button class="button profile__edit-button"></button>
+            <button 
+              class="button profile__edit-button" 
+              type="button"
+              aria-label="Изменить информацию о себе">
+            </button>
             <p class="profile__about">Исследователь океана</p>
           </div>
-          <button class="button profile__add-button"></button>
+          <button 
+            class="button profile__add-button"
+            type="button"
+            aria-label="Добавить еще одно место">
+          </button>
         </section>
         <section class="places page__places">
           <ul class="places__list">
@@ -41,7 +56,11 @@
               <img class="place__photo" src="./images/timna.jpg" alt="Тимна" />
               <div class="place__description">
                 <h2 class="place__title">Тимна</h2>
-                <button class="place__like-button"></button>
+                <button 
+                  class="place__like-button"
+                  type="button"
+                  aria-label="Нравится">
+                </button>
               </div>
             </li>
             <li class="place">
@@ -52,7 +71,11 @@
               />
               <div class="place__description">
                 <h2 class="place__title">Мёртвое море</h2>
-                <button class="place__like-button"></button>
+                <button 
+                  class="place__like-button"
+                  type="button"
+                  aria-label="Нравится">
+                </button>
               </div>
             </li>
             <li class="place">
@@ -63,7 +86,11 @@
               />
               <div class="place__description">
                 <h2 class="place__title">Солнечная башня</h2>
-                <button class="place__like-button"></button>
+                <button 
+                  class="place__like-button"
+                  type="button"
+                  aria-label="Нравится">
+                </button>
               </div>
             </li>
             <li class="place">
@@ -74,7 +101,11 @@
               />
               <div class="place__description">
                 <h2 class="place__title">Стена Плача</h2>
-                <button class="place__like-button"></button>
+                <button 
+                  class="place__like-button"
+                  type="button"
+                  aria-label="Нравится">
+                </button>
               </div>
             </li>
             <li class="place">
@@ -85,7 +116,11 @@
               />
               <div class="place__description">
                 <h2 class="place__title">Бахайские сады</h2>
-                <button class="place__like-button"></button>
+                <button 
+                  class="place__like-button"
+                  type="button"
+                  aria-label="Нравится">
+                </button>
               </div>
             </li>
             <li class="place">
@@ -96,7 +131,11 @@
               />
               <div class="place__description">
                 <h2 class="place__title">Кинерет</h2>
-                <button class="place__like-button"></button>
+                <button 
+                  class="place__like-button"
+                  type="button"
+                  aria-label="Нравится">
+                </button>
               </div>
             </li>
           </ul>
@@ -105,28 +144,37 @@
       <footer class="footer page__footer">
         <p class="footer__copyrights">&copy; 2021 Mesto Russia</p>
       </footer>
-      <section class="popup">
+      <div class="popup">
         <div class="popup__container">
-          <form class="popup__form">
-            <h2 class="popup__title">Редактировать профиль</h2>
-            <input
-              type="text"
-              name="userName"
-              class="popup__input popup__name"
-              placeholder="Жак-Ив Кусто"
-            />
-            <input
-              type="text"
-              name="userAbout"
-              class="popup__input popup__about"
-              placeholder="Исследователь океана"
-            />
-            <button type="submit" class="popup__sbmt-button">Сохранить</button>
-          </form>
-          <button class="button popup__close-button"></button>
+          <h2 class="popup__title">Редактировать профиль</h2>
+            <form 
+              class="popup__form" 
+              name="userData">
+              <input
+                type="text"
+                name="userName"
+                class="popup__input popup__input_type_name"
+                placeholder="Жак-Ив Кусто"
+              />
+              <input
+                type="text"
+                name="userAbout"
+                class="popup__input popup__input_type_about"
+                placeholder="Исследователь океана"
+              />
+              <button 
+                type="submit" 
+                class="popup__sbmt-button">
+                Сохранить</button>
+            </form>
+          <button 
+            class="button popup__close-button"
+            type="button"
+            aria-label="Закрыть редактирование профиля">
+          </button>
         </div>
-      </section>
+      </div>
     </div>
-    <script src="./pages/index.js"></script>
+    <script src="./scripts/index.js"></script>
   </body>
 </html>

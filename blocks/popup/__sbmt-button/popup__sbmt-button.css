@@ -14,7 +14,7 @@
   transition: opacity 1s ease;
   min-height: 46px;
   padding: 0;
-  margin: 48px 0 37px 0;
+  margin-top: 48px;
   width: 100%;
 }
 
@@ -25,14 +25,8 @@
 @media screen and (max-width: 850px) {
   .popup__sbmt-button {
     font-size: 14px;
-    line-height: 1.22;
-    margin: 45px 22px 25px;
+    line-height: 17px;
+    margin-top: 45px;
     max-width: 238px;
-  }
-}
-
-@media screen and (max-width: 550px) {
-  .popup__sbmt-button {
-    margin: 45px auto 25px;
   }
 }
