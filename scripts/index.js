@@ -15,12 +15,10 @@ let jobValue = document.querySelector(".profile__about");
 // Функция открытия поп-аппа
 function openPopup() {
   popupElement.classList.add("popup_opened");
-  // комментарий в первом ревью: По заданию функция открытия должна ещё заносить сразу же данные в форму. 
-//  Для этого значениям инпутов надо присвоить текстовые значения профайла
-  let nameInput = nameValue.value;
-  let jobInput = jobValue.value;
-  nameInput.textContent = nameValue;
-  jobInput.textContent = jobValue;
+//  Значениям инпутов присваиваем текстовые значения профайла
+// Чтобы функция значения заносила данные в форму
+  nameInput.value = nameValue.textContent;
+  jobInput.value = jobValue.textContent;
 }
 // Функция закрытия поп-аппа
 function closePopup() {
@@ -29,12 +27,9 @@ function closePopup() {
 //// Функция-обработчик «отправки» формы
 function formSubmitHandler(evt) {
   evt.preventDefault(); //Эта строчка отменяет стандартную отправку формы.
-// задаем переменные newName и newJob для новых значений введенных в поля формы
-  let newName = nameInput.value;
-  let newJob = jobInput.value;
 //вставляем новые значения в profile
-  nameValue.textContent = newName;
-  jobValue.textContent = newJob;
+  nameValue.textContent = nameInput.value;
+  jobValue.textContent = jobInput.value;
   closePopup();
 }
 
