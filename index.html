@@ -51,100 +51,14 @@
           </button>
         </section>
         <section class="places page__places">
-          <ul class="places__list">
-            <li class="place">
-              <img class="place__photo" src="./images/timna.jpg" alt="Тимна" />
-              <div class="place__description">
-                <h2 class="place__title">Тимна</h2>
-                <button 
-                  class="place__like-button"
-                  type="button"
-                  aria-label="Нравится">
-                </button>
-              </div>
-            </li>
-            <li class="place">
-              <img
-                class="place__photo"
-                src="./images/dead_sea.jpg"
-                alt="Мертвое море"
-              />
-              <div class="place__description">
-                <h2 class="place__title">Мёртвое море</h2>
-                <button 
-                  class="place__like-button"
-                  type="button"
-                  aria-label="Нравится">
-                </button>
-              </div>
-            </li>
-            <li class="place">
-              <img
-                class="place__photo"
-                src="./images/mordor_tower.jpg"
-                alt="Солнечная электростанция в пустыне Негев"
-              />
-              <div class="place__description">
-                <h2 class="place__title">Солнечная башня</h2>
-                <button 
-                  class="place__like-button"
-                  type="button"
-                  aria-label="Нравится">
-                </button>
-              </div>
-            </li>
-            <li class="place">
-              <img
-                class="place__photo"
-                src="./images/jerusalem.jpg"
-                alt="Стена Плача"
-              />
-              <div class="place__description">
-                <h2 class="place__title">Стена Плача</h2>
-                <button 
-                  class="place__like-button"
-                  type="button"
-                  aria-label="Нравится">
-                </button>
-              </div>
-            </li>
-            <li class="place">
-              <img
-                class="place__photo"
-                src="./images/terraces_bahai.jpg"
-                alt="Бахайские сады"
-              />
-              <div class="place__description">
-                <h2 class="place__title">Бахайские сады</h2>
-                <button 
-                  class="place__like-button"
-                  type="button"
-                  aria-label="Нравится">
-                </button>
-              </div>
-            </li>
-            <li class="place">
-              <img
-                class="place__photo"
-                src="./images/kineret.jpg"
-                alt="Кинерет"
-              />
-              <div class="place__description">
-                <h2 class="place__title">Кинерет</h2>
-                <button 
-                  class="place__like-button"
-                  type="button"
-                  aria-label="Нравится">
-                </button>
-              </div>
-            </li>
-          </ul>
+           <ul class="places__list"></ul>
         </section>
       </main>
       <footer class="footer page__footer">
         <p class="footer__copyrights">&copy; 2021 Mesto Russia</p>
       </footer>
-      <div class="popup">
+
+      <div class="popup popup_profile-edit">
         <div class="popup__container">
           <h2 class="popup__title">Редактировать профиль</h2>
             <form 
@@ -174,7 +88,53 @@
           </button>
         </div>
       </div>
+      
+      <div class="popup popup_add-card">
+        <div class="popup__container">
+          <h2 class="popup__title">Новое место</h2>
+          <form 
+          class="popup__form"
+          name="addCard">
+            <input
+              type="text"
+              name="cardTitle"
+              class="popup__input popup__input_type_card-title"
+              placeholder="Название"
+              minlength="2"
+              maxlength="30"
+              />
+            <input
+              type="url"
+              name="cardLink"
+              class="popup__input popup__input_type_card-link"
+              autocomplete="off"
+              placeholder="Ссылка на картинку"
+               />
+            <button 
+            type="submit" 
+            class="popup__sbmt-button">Создать</button>
+          </form>
+          <button class="button popup__close-button" type="button" aria-label="Закрыть добавление карточки"></button>
+        </div>
+      </div>
+
     </div>
+
+    <template class="card-template">
+      <li class="place">
+        <img class="place__photo" src="#" alt="#" />
+        <div class="place__description">
+          <h2 class="place__title"></h2>
+          <button 
+            class="place__like-button"
+            type="button"
+            aria-label="Нравится">
+          </button>
+        </div>
+        <button class="button place__remove-button"></button>
+      </li>
+    </template>
     <script src="./scripts/index.js"></script>
   </body>
 </html>
+
