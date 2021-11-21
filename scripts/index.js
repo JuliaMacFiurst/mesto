@@ -20,6 +20,14 @@ const cardImage = document.querySelector(".place__photo"); // картинка �
 const template = document.querySelector(".card-template"); // template карточки
 const placesList = document.querySelector(".places__list"); // блок places, куда вставляем карточки
 
+//Находим элементы в DOM для попапа открытия картинок
+const popupOpenImage = document.querySelector(".popup_open-image"); //попап открытия картинок
+const placeImage = document.querySelector(".place__photo"); // картинки из блока places
+const placeTitle = document.querySelector(".place__title"); // названия картинок из блока places
+const popupImage = document.querySelector(".popup__image"); // картинка в попапе
+const popupCaption = document.querySelector(".popup__caption"); // подпись к картинке в попапе
+const closeOpenImageButton = popupOpenImage.querySelector(".popup__close-button"); // кнопка закрытия попапа картинки
+
 // массив карточек
 const initialCards = [
   {
@@ -48,7 +56,7 @@ const initialCards = [
   }
 ]; 
 
-// Попап профиля
+// ПОПАП ПРОФИЛЯ
 // Функция открытия поп-аппа профиля
 function openPopupProfile() {
   popupProfileEdit.classList.add("popup_opened");
@@ -70,7 +78,7 @@ function formSubmitHandler(evt) {
   closePopupProfile();
 }
 
-//Попап добавления карточек
+//ПОПАП ДОБАВЛЕНИЯ КАРТОЧЕК
 //Функция открытия попапа добавления карточки
 function openPopupAddCard() {
   popupAddCard.classList.add("popup_opened");
@@ -121,7 +129,22 @@ cardLinkInput.value = '';
 
 placesList.append(...result);
 
+//ПОПАП ОТКРЫТИЯ КАРТИНОК
+//Функция открытия попапа открытия карточек
+function openPopupOpenImage(evt) {
+  popupOpenImage.classList.add("popup_opened");
+  
+  }
 
+// Функция закрытия попапа картинок
+function closePopupOpenImage() {
+  popupOpenImage.classList.remove("popup_opened");
+}
+
+
+// cardTemplate.querySelector('.place__title').textContent = item.name; // присваиваем карточкам названия из массива
+//   cardTemplate.querySelector('.place__photo').src = item.link; // присваиваем карточкам картинки из массива
+//   cardTemplate.querySelector(".place__photo").alt = item.name;
 
 editButton.addEventListener("click", openPopupProfile);
 addCardButton.addEventListener("click", openPopupAddCard);
@@ -129,4 +152,6 @@ closeButton.addEventListener("click", closePopupProfile);
 closeAddCardButton.addEventListener("click", closePopupAddCard);
 profileForm.addEventListener("submit", formSubmitHandler);
 addCardForm.addEventListener("submit", submitFormHandler);
+closeOpenImageButton.addEventListener("click", closePopupOpenImage);
+
 
