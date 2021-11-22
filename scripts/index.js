@@ -9,7 +9,6 @@ const jobValue = document.querySelector(".profile__about"); //описание �
 //Находим элементы в DOM для попапа добавления карточек
 const popupAddCard = document.querySelector(".popup_add-card"); // попап добавления карточек
 const addCardButton = document.querySelector(".profile__add-button"); // кнопка открытия попапа карточек
-const closeAddCardButton = popupAddCard.querySelector(".popup__close-button"); // кнопка закрытия попапа карточек
 const addCardForm = popupAddCard.querySelector(".popup__form"); // форма попапа карточек
 const cardTitleInput = addCardForm.querySelector(".popup__input_type_card-title"); // инпут названия карточки
 const cardLinkInput = addCardForm.querySelector(".popup__input_type_card-link"); // инпут изображения карточки
@@ -118,7 +117,6 @@ placesList.append(...result);
 
 //ПОПАП ОТКРЫТИЯ КАРТИНОК
 //Функция открытия попапа открытия карточек
-
 const placeImage = document.querySelectorAll(".place__photo").forEach(item => {
   item.addEventListener("click", () => {
     popupOpenImage.classList.add("popup_opened");
