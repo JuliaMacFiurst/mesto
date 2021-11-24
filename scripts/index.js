@@ -61,6 +61,7 @@ function closePopup(popup) {
 
 // ПОПАП ПРОФИЛЯ
 function setPopupProfile() {
+  openPopup(popupProfileEdit)
   // Значениям инпутов присваиваем текстовые значения профайла
 // Чтобы функция значения заносила данные в форму
 nameInput.value = nameValue.textContent;
@@ -80,10 +81,11 @@ function handleProfileSubmit(evt) {
 // Функция создания карточки и добавления ее на страницу
 const createCardDomNode = (item) => {
   const cardTemplate = template.content.querySelector('.place').cloneNode(true);
+  const cardTemplateImage = cardTemplate.querySelector(".place__photo");
  // получаем и клонируем содержимое тега template 
   cardTemplate.querySelector(".place__title").textContent = item.name; // присваиваем карточкам названия из массива
-  cardTemplate.querySelector(".place__photo").src = item.link; // присваиваем карточкам картинки из массива
-  cardTemplate.querySelector(".place__photo").alt = item.name; // присваиваем альты картинок
+  cardTemplateImage.src = item.link; // присваиваем карточкам картинки из массива
+  cardTemplateImage.alt = item.name; // присваиваем альты картинок
 
   const deleteButton = cardTemplate.querySelector('.place__remove-button'); // реализуем удаление карточки
 	deleteButton.addEventListener('click', deleteCard);
@@ -101,9 +103,7 @@ function openImage (image) {
     image.querySelector(".popup__caption").textContent = item.name;
   }
 
-  cardTemplate
-  .querySelector(".place__photo")
-  .addEventListener("click", () => openImage(popupOpenImage));
+  cardTemplateImage.addEventListener("click", () => openImage(popupOpenImage));
 
   return cardTemplate; // возвращаем массив карточек на страницу
 }
@@ -143,7 +143,7 @@ document.querySelectorAll(".popup__close-button").forEach((btn) => {
   });
 });
 
-editButton.addEventListener("click", () => openPopup(popupProfileEdit));
+editButton.addEventListener("click", setPopupProfile);
 addCardButton.addEventListener("click", () => openPopup(popupAddCard));
 profileForm.addEventListener("submit", handleProfileSubmit);
 addCardForm.addEventListener("submit", handleCardSubmit);
