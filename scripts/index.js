@@ -59,6 +59,7 @@ function openPopup(popup) {
 //Функция закрытия всех попапов
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeByEscape);
 }
 
 // ПОПАП ПРОФИЛЯ
@@ -138,22 +139,24 @@ function deleteCard(evt) {
 }
 
 // Функция закрытия попапов кликом на оверлей 
-popupOverlay.forEach((popup) => {
+const closePopupByOverlay = popupOverlay.forEach((popup) => {
   popup.addEventListener('click', (evt) => {
     if (evt.target.classList.contains('popup')) {
       closePopup(popup);
     }
   });
 });
+
   
 // Функция закрытия попапов кликом на Escape
-popupOverlay.forEach((popup) => {
-  window.addEventListener('keydown', (evt) => {
+const closeByEscape = popupOverlay.forEach((popup) => {
+  document.addEventListener('keydown', (evt) => {
     if (evt.key === "Escape") {
       closePopup(popup);
     }
   });
 });
+
 
 
 //Слушатели
