@@ -21,6 +21,8 @@ const popupOpenImage = document.querySelector(".popup_open-image"); //попап
 const popupImage = document.querySelector(".popup__image"); // картинка в попапе
 const popupCaption = document.querySelector(".popup__caption"); // подпись к картинке в попапе
 
+const popupOverlay = document.querySelectorAll('.popup'); // оверлей попапов
+
 // массив карточек
 const initialCards = [
   {
@@ -135,6 +137,25 @@ function deleteCard(evt) {
   evt.target.closest(".place").remove();
 }
 
+// Функция закрытия попапов кликом на оверлей 
+popupOverlay.forEach((popup) => {
+  popup.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup')) {
+      closePopup(popup);
+    }
+  });
+});
+  
+// Функция закрытия попапов кликом на Escape
+popupOverlay.forEach((popup) => {
+  window.addEventListener('keydown', (evt) => {
+    if (evt.key === "Escape") {
+      closePopup(popup);
+    }
+  });
+});
+
+
 //Слушатели
 document.querySelectorAll(".popup__close-button").forEach((btn) => {
   btn.addEventListener("click", () => {
@@ -142,6 +163,7 @@ document.querySelectorAll(".popup__close-button").forEach((btn) => {
     closePopup(popup)
   });
 });
+
 
 editButton.addEventListener("click", setPopupProfile);
 addCardButton.addEventListener("click", () => openPopup(popupAddCard));
