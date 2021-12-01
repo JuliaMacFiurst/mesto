@@ -134,6 +134,7 @@ const handleCardSubmit = (evt) => {
   cardLinkInput.value = "";
   closePopup(popupAddCard);
   popupCardSbmtButton.classList.add("popup__sbmt-button_disabled");
+  popupCardSbmtButton.setAttribute('disabled', true);
 };
 
 // Функция удаления карточек
