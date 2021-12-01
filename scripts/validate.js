@@ -62,7 +62,7 @@
       });
   }
 
-// Объект с коллекцией всех классов необходимых для валидации
+// Объект с коллекцией всех классов неoбходимых для валидации
   const validationConfig = {
     formSelector: ".popup__form",
     inputSelector: ".popup__input",
