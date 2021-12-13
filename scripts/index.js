@@ -18,6 +18,7 @@ const cardTitleInput = addCardForm.querySelector(".popup__input_type_card-title"
 const cardLinkInput = addCardForm.querySelector(".popup__input_type_card-link"); // инпут изображения карточки
 // const cardTemplate = document.querySelector(".card-template").content; // template карточки
 const cardTemplateImage = document.querySelector(".place__photo");
+const cardTemplateTitle = document.querySelector(".place__title");
 const placesList = document.querySelector(".places__list"); // блок places, куда вставляем карточки
 const popupCardSbmtButton = popupAddCard.querySelector(".popup__sbmt-button"); //кнопка сабмита карточек
 
@@ -67,7 +68,7 @@ initialCards.forEach((item) => {
 }); 
 
 // Функция открытия всех попапов
-function openPopup(popup) {
+export function openPopup(popup) {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown", closeByEscape);
 }
@@ -152,10 +153,16 @@ function handleProfileSubmit(evt) {
 //   popupCardSbmtButton.disabled = true;
 // };
 
-// // Функция удаления карточек
-// function deleteCard(evt) {
-//   evt.target.closest(".place").remove();
-// }
+// function openImage(image) {
+  //   openPopup(popupOpenImage);
+  //   image.querySelector(".popup__image").src = item.link;
+  //   image.querySelector(".popup__image").alt = item.name;
+  //   image.querySelector(".popup__caption").textContent = item.name;
+  // }
+
+  // cardTemplateImage.addEventListener("click", () => openImage(popupOpenImage));
+
+
 
 // Функция закрытия попапов кликом на Escape
 function closeByEscape(evt) {
