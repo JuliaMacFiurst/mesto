@@ -9,35 +9,49 @@ export class Card {
     constructor(name, link, deleteBnt, likeBnt) {
         this._name = name;
         this._link = link;
-        // this._deleteBtn = deleteBnt;
-        // this._likeBnt = likeBnt;
+        
     }
     _getTemplate() {
         // забираем разметку из HTML и клонируем элемент
-            const cardElement = document
-            .querySelector('.card-template')
-            .content
-            .querySelector(".place")
-            .cloneNode(true);
-            // вернём DOM-элемент карточки
-            return cardElement;
+        const cardElement = document
+        .querySelector('.card-template')
+        .content
+        .querySelector('.place')
+        .cloneNode(true);
+        // вернём DOM-элемент карточки
+        return cardElement;
 
     }
     generateCard() {
         // Запишем разметку в приватное поле _element. 
         // Так у других элементов появится доступ к ней.
-            this._element = this._getTemplate();
-
+        this._element = this._getTemplate();
+        this._setEventListeners();
         // Добавим данные
-            this._element.querySelector('.place__photo').src = this._link;
-            this._element.querySelector('.place__title').textContent = this._name;
-            // this._element.querySelector('.place__remove-button') = this._deleteBtn;
-            // this._element.querySelector(".place__like-button") = this._likeBnt;
+        this._element.querySelector('.place__photo').src = this._link;
+        this._element.querySelector('.place__title').textContent = this._name;
+            
 
             return this._element;
 
     }
+    _setEventListeners() {
+        this._element.querySelector('.place__like-button').addEventListener('click', () => {
+        this._handleLikeClick();
+        });
+        this._element.querySelector('.place__remove-button').addEventListener('click', () => {
+        this._handleDeleteClick();
+    });
+}
+    _handleLikeClick() {
+        this._element.querySelector('.place__like-button').classList.toggle('place__like-button_active');
 } 
+    _handleDeleteClick() {
+        this._element.remove();
+    }
+    
+  }
+
 //     constructor(data, cardSelector, cardTemplate, cardClick) {
 //         this._image = data.link
 //         this._title = data.title;
