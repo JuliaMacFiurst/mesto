@@ -1,5 +1,5 @@
 import { Card } from './Card.js'
-import { FormValidator } from ''
+import { FormValidator } from './FormValidator.js'
 
 
 //Находим элементы в DOM для попапа профиля
@@ -18,17 +18,20 @@ const addCardForm = popupAddCard.querySelector(".popup__form"); // форма п
 const cardTitleInput = addCardForm.querySelector(".popup__input_type_card-title"); // инпут названия карточки
 const cardLinkInput = addCardForm.querySelector(".popup__input_type_card-link"); // инпут изображения карточки
 const cardTemplate = document.querySelector(".card-template"); // template карточки
-const cardTemplateImage = document.querySelector(".place__photo");
-const cardTemplateTitle = document.querySelector(".place__title");
 const placesList = document.querySelector(".places__list"); // блок places, куда вставляем карточки
 const popupCardSbmtButton = popupAddCard.querySelector(".popup__sbmt-button"); //кнопка сабмита карточек
 
-//Находим элементы в DOM для попапа открытия картинок
-const popupOpenImage = document.querySelector(".popup_open-image"); //попап открытия картинок
-
 const popups = document.querySelectorAll(".popup"); // все попапы
 
-
+// Объект с коллекцией всех классов неoбходимых для валидации
+const validationConfig = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__sbmt-button",
+  inactiveButtonClass: "popup__sbmt-button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_visible"
+}
 
 // массив карточек
 const initialCards = [
@@ -75,6 +78,12 @@ function createCard(item){
   placesList.prepend(cardElement);
 }
 
+//ВАЛИДАЦИЯ ФОРМ
+const profileFormValidator = new FormValidator(profileForm, validationConfig);
+profileFormValidator.enableValidation();
+const addCardFormValidator = new FormValidator(addCardForm, validationConfig);
+addCardFormValidator.enableValidation();
+
 // Функция обработчик "отправки" формы карточек
 function handleCardSubmit(evt){
   evt.preventDefault();
@@ -92,7 +101,6 @@ function handleCardSubmit(evt){
   popupCardSbmtButton.classList.add("popup__sbmt-button_disabled");
   popupCardSbmtButton.disabled = true;
 }
-
 
 // ПОПАП ПРОФИЛЯ
 function setPopupProfile() {
