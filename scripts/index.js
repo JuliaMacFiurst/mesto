@@ -20,6 +20,8 @@ const cardLinkInput = addCardForm.querySelector(".popup__input_type_card-link");
 const cardTemplate = document.querySelector(".card-template"); // template карточки
 const placesList = document.querySelector(".places__list"); // блок places, куда вставляем карточки
 const popupCardSbmtButton = popupAddCard.querySelector(".popup__sbmt-button"); //кнопка сабмита карточек
+const popupImage = document.querySelector(".popup__image") //картинка из попапа открытия карточки
+const popupCaption = document.querySelector(".popup__caption") // подпись картинки в попапе
 
 const popups = document.querySelectorAll(".popup"); // все попапы
 
@@ -63,7 +65,7 @@ const initialCards = [
 
 initialCards.forEach((item) => {
   // Создадим экземпляр карточки
-  const card = new Card(item.name, item.link);
+  const card = new Card(item.name, item.link, cardTemplate, handleCardClick);
   // Создаём карточку и возвращаем наружу
   const cardElement = card.generateCard();
 
@@ -73,7 +75,7 @@ initialCards.forEach((item) => {
 
 //ПОПАП ДОБАВЛЕНИЯ КАРТОЧЕК
 function createCard(item){
-  const card = new Card(item.name, item.link, cardTemplate.content);
+  const card = new Card(item.name, item.link, cardTemplate, handleCardClick);
   const cardElement = card.generateCard();
   placesList.prepend(cardElement);
 }
@@ -121,9 +123,16 @@ function handleProfileSubmit(evt) {
 }
 
 // Функция открытия всех попапов
-export function openPopup(popup) {
+function openPopup(popup) {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown", closeByEscape);
+}
+
+function handleCardClick (name, link) {
+  openPopup(this._popupOpenImage);
+  popupImage.src = link;
+  popupImage.alt = name;
+  popupCaption.textContent = name;
 }
 
 //Функция закрытия всех попапов

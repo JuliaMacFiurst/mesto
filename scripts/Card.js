@@ -1,22 +1,15 @@
-// Создайте класс Card, который создаёт карточку с текстом и ссылкой на изображение:
-// принимает в конструктор её данные и селектор её template-элемента;
-// содержит приватные методы, которые работают с разметкой, устанавливают слушателей событий;
-// содержит приватные методы для каждого обработчика;
-// содержит один публичный метод, который возвращает полностью работоспособный и наполненный данными элемент карточки.
-// Для каждой карточки создайте экземпляр класса Card.
-import { openPopup } from './index.js'
-
 export class Card {
-    constructor(name, link) {
+    constructor(name, link, cardTemplate, handleCardClick) {
         this._name = name;
         this._link = link;
         this._popupOpenImage = document.querySelector(".popup_open-image");
+        this.handleCardClick = handleCardClick;
         
     }
     _getTemplate() {
         // забираем разметку из HTML и клонируем элемент
         const cardElement = document
-        .querySelector('.card-template')
+        .querySelector('.card-template') 
         .content
         .querySelector('.place')
         .cloneNode(true);
@@ -32,7 +25,7 @@ export class Card {
         this._handleDeleteClick();
     });
         this._element.querySelector('.place__photo').addEventListener("click", () => {
-        this._handleCardClick(this._name, this._link);
+        this.handleCardClick(this._name, this._link);
       });
 }
     _handleLikeClick() {
@@ -41,12 +34,12 @@ export class Card {
     _handleDeleteClick() {
         this._element.remove();
     }
-    _handleCardClick() {
-        openPopup(this._popupOpenImage);
-          document.querySelector(".popup__image").src = this._link;
-          document.querySelector(".popup__image").alt = this._name;
-          document.querySelector(".popup__caption").textContent = this._name;
-      }
+    // _handleCardClick() {
+    //     openPopup(this._popupOpenImage);
+    //       document.querySelector(".popup__image").src = this._link;
+    //       document.querySelector(".popup__image").alt = this._name;
+    //       document.querySelector(".popup__caption").textContent = this._name;
+    //   }
 
     generateCard() {
         // Запишем разметку в приватное поле _element. 
