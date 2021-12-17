@@ -24,7 +24,7 @@ const popupImage = document.querySelector(".popup__image") //картинка и
 const popupCaption = document.querySelector(".popup__caption") // подпись картинки в попапе
 
 const popups = document.querySelectorAll(".popup"); // все попапы
-
+const popupOpenImage = document.querySelector(".popup_open-image");
 // Объект с коллекцией всех классов неoбходимых для валидации
 const validationConfig = {
   formSelector: ".popup__form",
@@ -129,7 +129,7 @@ function openPopup(popup) {
 }
 
 function handleCardClick (name, link) {
-  openPopup(this._popupOpenImage);
+  openPopup(popupOpenImage);
   popupImage.src = link;
   popupImage.alt = name;
   popupCaption.textContent = name;
