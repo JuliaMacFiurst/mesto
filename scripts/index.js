@@ -17,8 +17,6 @@ const addCardButton = document.querySelector(".profile__add-button"); // кно�
 const addCardForm = popupAddCard.querySelector(".popup__form"); // форма попапа карточек
 const cardTitleInput = addCardForm.querySelector(".popup__input_type_card-title"); // инпут названия карточки
 const cardLinkInput = addCardForm.querySelector(".popup__input_type_card-link"); // инпут изображения карточки
-const cardTemplate = document.querySelector(".card-template"); // template карточки
-const placesList = document.querySelector(".places__list"); // блок places, куда вставляем карточки
 const popupCardSbmtButton = popupAddCard.querySelector(".popup__sbmt-button"); //кнопка сабмита карточек
 const popupImage = document.querySelector(".popup__image") //картинка из попапа открытия карточки
 const popupCaption = document.querySelector(".popup__caption") // подпись картинки в попапе
@@ -63,11 +61,14 @@ const initialCards = [
   },
 ];
 
+const cardTemplate = document.querySelector(".card-template").content; // template карточки
+const placesList = document.querySelector(".places__list"); // блок places, куда вставляем карточки
+
 initialCards.forEach((item) => {
   // Создадим экземпляр карточки
   const card = new Card(item.name, item.link, cardTemplate, handleCardClick);
   // Создаём карточку и возвращаем наружу
-  const cardElement = card.generateCard();
+  const cardElement = card.generateCard(placesList);
 
   // Добавляем в DOM
   placesList.append(cardElement);

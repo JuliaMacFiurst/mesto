@@ -1,30 +1,31 @@
 export class Card {
-    constructor(name, link, cardTemplate, handleCardClick, popupOpenImage) {
+    constructor(name, link, cardTemplate, placesList, handleCardClick, popupOpenImage) {
         this._name = name;
         this._link = link;
+        this._cardTemplate = cardTemplate;
+        this._placesList = placesList;
         this._popupOpenImage = popupOpenImage;
         this.handleCardClick = handleCardClick;
         
     }
     _getTemplate() {
         // забираем разметку из HTML и клонируем элемент
-        const cardElement = document
-        .querySelector('.card-template') 
-        .content
+        const cardElement = this._cardTemplate.cloneNode(true)
         .querySelector('.place')
         .cloneNode(true);
         // вернём DOM-элемент карточки
         return cardElement;
 
     }
+   
     _setEventListeners() {
-        this._element.querySelector('.place__like-button').addEventListener('click', () => {
+        this._likeButton.addEventListener('click', () => {
         this._handleLikeClick();
         });
-        this._element.querySelector('.place__remove-button').addEventListener('click', () => {
+        this._removeButton.addEventListener('click', () => {
         this._handleDeleteClick();
     });
-        this._element.querySelector('.place__photo').addEventListener("click", () => {
+        this._placePhoto.addEventListener("click", () => {
         this.handleCardClick(this._name, this._link);
       });
 }
@@ -40,19 +41,24 @@ export class Card {
     //       document.querySelector(".popup__image").alt = this._name;
     //       document.querySelector(".popup__caption").textContent = this._name;
     //   }
-
     generateCard() {
         // Запишем разметку в приватное поле _element. 
         // Так у других элементов появится доступ к ней.
         this._element = this._getTemplate();
-        this._setEventListeners();
         // Добавим данные
-        this._element.querySelector('.place__photo').src = this._link;
-        this._element.querySelector('.place__photo').alt = this._name;
-        this._element.querySelector('.place__title').textContent = this._name;
+        this._placePhoto = this._element.querySelector('.place__photo');
+        this._likeButton = this._element.querySelector('.place__like-button');
+        this._removeButton = this._element.querySelector('.place__remove-button');
+        
+        this._placePhoto.src = this._link;
+        this._placePhoto.alt = this._name;
+        this._placePhoto.textContent = this._name;
+
             
+        this._setEventListeners();
 
             return this._element;
 
     }
-  }
+  
+    }
