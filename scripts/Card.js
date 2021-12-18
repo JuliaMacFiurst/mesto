@@ -1,11 +1,11 @@
 export class Card {
-    constructor(name, link, cardTemplate, placesList, handleCardClick, popupOpenImage) {
+    constructor(name, link, cardTemplate, handleCardClick, popupOpenImage, placesList) {
         this._name = name;
         this._link = link;
         this._cardTemplate = cardTemplate;
-        this._placesList = placesList;
-        this._popupOpenImage = popupOpenImage;
         this.handleCardClick = handleCardClick;
+        this._popupOpenImage = popupOpenImage;
+        this._placesList = placesList;
         
     }
     _getTemplate() {
@@ -30,7 +30,7 @@ export class Card {
       });
 }
     _handleLikeClick() {
-        this._element.querySelector('.place__like-button').classList.toggle('place__like-button_active');
+        this._likeButton.classList.toggle('place__like-button_active');
 } 
     _handleDeleteClick() {
         this._element.remove();
@@ -46,13 +46,14 @@ export class Card {
         // Так у других элементов появится доступ к ней.
         this._element = this._getTemplate();
         // Добавим данные
+        this._placeTitle = this._element.querySelector('.place__title');
         this._placePhoto = this._element.querySelector('.place__photo');
         this._likeButton = this._element.querySelector('.place__like-button');
         this._removeButton = this._element.querySelector('.place__remove-button');
         
         this._placePhoto.src = this._link;
-        this._placePhoto.alt = this._name;
-        this._placePhoto.textContent = this._name;
+        this._placeTitle.alt = this._name;
+        this._placeTitle.textContent = this._name;
 
             
         this._setEventListeners();
