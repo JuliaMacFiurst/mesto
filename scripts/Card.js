@@ -35,12 +35,7 @@ export class Card {
     _handleDeleteClick() {
         this._element.remove();
     }
-    // _handleCardClick() {
-    //     openPopup(this._popupOpenImage);
-    //       document.querySelector(".popup__image").src = this._link;
-    //       document.querySelector(".popup__image").alt = this._name;
-    //       document.querySelector(".popup__caption").textContent = this._name;
-    //   }
+    
     generateCard() {
         // Запишем разметку в приватное поле _element. 
         // Так у других элементов появится доступ к ней.

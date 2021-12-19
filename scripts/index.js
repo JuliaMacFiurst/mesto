@@ -10,7 +10,6 @@ const nameInput = document.querySelector(".popup__input_type_name"); //инпу�
 const jobInput = document.querySelector(".popup__input_type_about"); //инпут описания попапа профиля
 const nameValue = document.querySelector(".profile__name"); //имя в профиле
 const jobValue = document.querySelector(".profile__about"); //описание в профиле
-// const popupProfileSbmtButton = profileForm.querySelector(".popup__sbmt-button"); // кнопка сабмита профиля
 
 //Находим элементы в DOM для попапа добавления карточек
 const popupAddCard = document.querySelector(".popup_add-card"); // попап добавления карточек
@@ -84,6 +83,23 @@ const profileFormValidator = new FormValidator(profileForm, validationConfig);
 profileFormValidator.enableValidation();
 const addCardFormValidator = new FormValidator(addCardForm, validationConfig);
 addCardFormValidator.enableValidation();
+
+// const formValidators = {}
+
+// // Включение валидации
+// const enableValidation = (validationConfig) => {
+//   const formList = Array.from(document.querySelectorAll(validationConfig.formSelector))
+//   formList.forEach((formElement) => {
+//     const validator = new FormValidator(formElement, validationConfig)
+//    // вот тут в объект записываем под именем формы
+//     formValidators[ formElement.userData] = validator;
+//    validator.enableValidation();
+//   });
+// };
+
+// enableValidation(validationConfig);
+ 
+
 //ПОПАП ДОБАВЛЕНИЯ КАРТОЧЕК
 // Функция обработчик "отправки" формы карточек
 function handleCardSubmit(evt){
@@ -96,11 +112,9 @@ function handleCardSubmit(evt){
   }
   placesList.prepend(createCard(item));
 
+  closePopup(popupAddCard);
   cardTitleInput.value = "";
   cardLinkInput.value = "";
-  closePopup(popupAddCard);
-  // popupCardSbmtButton.classList.add("popup__sbmt-button_disabled");
-  // popupCardSbmtButton.disabled = true;
 }
 
 // ПОПАП ПРОФИЛЯ
@@ -119,6 +133,9 @@ function handleProfileSubmit(evt) {
   nameValue.textContent = nameInput.value;
   jobValue.textContent = jobInput.value;
   closePopup(popupProfileEdit);
+ 
+  nameInput.value = '';
+  jobInput.value = '';
 }
 
 // Функция открытия всех попапов
@@ -140,12 +157,6 @@ function closePopup(popup) {
   document.removeEventListener("keydown", closeByEscape);
 }
 
-// function closePopupProfile() {
-//   nameValue.textContent = '';
-//   jobValue.textContent = '';
-//   closePopup(popupProfileEdit);
-  
-// }
 
 // Функция закрытия попапов кликом на Escape
 function closeByEscape(evt) {
@@ -174,7 +185,8 @@ editButton.addEventListener("click", () => {
 });
 addCardButton.addEventListener("click", () => {
   openPopup(popupAddCard);
-  
+  cardTitleInput.value = "";
+  cardLinkInput.value = "";
   addCardFormValidator.resetValidation();
 });
 profileForm.addEventListener("submit", handleProfileSubmit);
