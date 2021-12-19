@@ -79,25 +79,25 @@ initialCards.forEach((item) => {
 
 
 //ВАЛИДАЦИЯ ФОРМ
-const profileFormValidator = new FormValidator(profileForm, validationConfig);
-profileFormValidator.enableValidation();
-const addCardFormValidator = new FormValidator(addCardForm, validationConfig);
-addCardFormValidator.enableValidation();
+// const profileFormValidator = new FormValidator(profileForm, validationConfig);
+// profileFormValidator.enableValidation();
+// const addCardFormValidator = new FormValidator(addCardForm, validationConfig);
+// addCardFormValidator.enableValidation();
 
-// const formValidators = {}
+const formValidators = {}
 
-// // Включение валидации
-// const enableValidation = (validationConfig) => {
-//   const formList = Array.from(document.querySelectorAll(validationConfig.formSelector))
-//   formList.forEach((formElement) => {
-//     const validator = new FormValidator(formElement, validationConfig)
-//    // вот тут в объект записываем под именем формы
-//     formValidators[ formElement.userData] = validator;
-//    validator.enableValidation();
-//   });
-// };
+// Включение валидации
+const enableValidation = (validationConfig) => {
+  const formList = Array.from(document.querySelectorAll(validationConfig.formSelector))
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(formElement, validationConfig)
+   // вот тут в объект записываем под именем формы
+    formValidators[ formElement.name] = validator;
+   validator.enableValidation();
+  });
+};
 
-// enableValidation(validationConfig);
+enableValidation(validationConfig);
  
 
 //ПОПАП ДОБАВЛЕНИЯ КАРТОЧЕК
@@ -181,13 +181,13 @@ popups.forEach((popup) => {
 //Слушатели
 editButton.addEventListener("click", () => {
   setPopupProfile();
-  profileFormValidator.resetValidation();
+  formValidators[ profileForm.name ].resetValidation();
 });
 addCardButton.addEventListener("click", () => {
   openPopup(popupAddCard);
   cardTitleInput.value = "";
   cardLinkInput.value = "";
-  addCardFormValidator.resetValidation();
+  formValidators[ addCardForm.name ].resetValidation();
 });
 profileForm.addEventListener("submit", handleProfileSubmit);
 addCardForm.addEventListener("submit", handleCardSubmit);
