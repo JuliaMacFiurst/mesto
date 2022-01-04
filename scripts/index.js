@@ -95,10 +95,11 @@ const userInfo = new UserInfo({
   info: profileAboutSelector
 });
 
-const handleCardClick = (name, link) => popupImage.open(name, link);
+function handleCardClick (name, link) {
+  const popupWithImage = new PopupWithImage('.popup_open-image');
+  popupWithImage.open(name, link); 
+}
 
-const popupWithImage = new PopupWithImage(popupOpenImageSelector);
-popupWithImage.setEventListeners();
 
 function createCard(item) {
   // Создадим экземпляр карточки
@@ -140,9 +141,24 @@ const cardList = new Section ({
  
 
 
-const popupAddCardForm = new PopupWithForm(
-  popupAddCardSelector,
-  popupFormSelector);
+const popupAddCardForm = new PopupWithForm(popupAddCardSelector, {
+  handleCardSubmit(){
+    //   evt.preventDefault();
+    //   // Вставляем новые здачения в place
+      const name = cardTitleInput.value;
+      const link = cardLinkInput.value;
+      const item = {
+          name, link
+      }
+      placesList.prepend(createCard(item));
+    
+      popupAddCard.close();
+    //   cardTitleInput.value = "";
+    //   cardLinkInput.value = "";
+    // }
+  }
+}, cardsContainerSelector);
+  
 
 const profileEditPopup = new PopupWithForm(popupProfileEditSelector, popupFormSelector)
 
@@ -150,20 +166,20 @@ const profileEditPopup = new PopupWithForm(popupProfileEditSelector, popupFormSe
 
 //ПОПАП ДОБАВЛЕНИЯ КАРТОЧЕК
 // Функция обработчик "отправки" формы карточек
-function handleCardSubmit(evt){
-  evt.preventDefault();
-  // Вставляем новые здачения в place
-  const name = cardTitleInput.value;
-  const link = cardLinkInput.value;
-  const item = {
-      name, link
-  }
-  placesList.prepend(createCard(item));
+// function handleCardSubmit(evt){
+//   evt.preventDefault();
+//   // Вставляем новые здачения в place
+//   const name = cardTitleInput.value;
+//   const link = cardLinkInput.value;
+//   const item = {
+//       name, link
+//   }
+//   placesList.prepend(createCard(item));
 
-  closePopup(popupAddCard);
-  cardTitleInput.value = "";
-  cardLinkInput.value = "";
-}
+//   closePopup(popupAddCard);
+//   cardTitleInput.value = "";
+//   cardLinkInput.value = "";
+// }
 
 // ПОПАП ПРОФИЛЯ
 // function setPopupProfile() {
@@ -233,5 +249,5 @@ addCardButton.addEventListener("click", () => {
   formValidators[ addCardForm.name ].resetValidation();
 });
 // profileForm.addEventListener("submit", setUserInfo);
-addCardForm.addEventListener("submit", handleCardSubmit);
+// addCardForm.addEventListener("submit", handleCardSubmit);
 

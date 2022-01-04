@@ -6,6 +6,7 @@ export default class Card {
         this.handleCardClick = handleCardClick;
         this._popupOpenImage = popupOpenImage;
         this._placesList = placesList;
+
         
     }
     _getTemplate() {
