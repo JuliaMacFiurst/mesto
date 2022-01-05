@@ -109,7 +109,7 @@ function createCard(item) {
       cardTemplate,
        handleCardClick);
   // Создаём карточку и возвращаем наружу
-  const cardElement = card.generateCard(placesList);
+  const cardElement = card.generateCard();
   return cardElement;
 }
 
@@ -118,17 +118,30 @@ initialCards.forEach((item) => {
   placesList.append(createCard(item));
 }); 
 
-const cardRenderer = (item) => {
-  const cardElement = createCard(item);
-  cardList.addItem(cardElement, "append");
-};
+// const cardRenderer = (item) => {
+//   // const cardElement = createCard(item);
+//   cardList.addItem(createCard(item));
+// };
 
-const cardList = new Section ({ 
-  items: initialCards, 
-  renderer: cardRenderer 
-}, 
-  cardsContainerSelector
-  );
+const popupAddCardForm = new PopupWithForm(
+  popupAddCardSelector, 
+  { handleSubmit: (newValues) => {
+      const item = {
+        name: newValues.cardInputName,
+        link: newValues.cardInputLink
+      }
+      cardsList.addItem(createCard(item));
+      popupAddCardForm.close()
+  }
+});
+  
+const cardsList = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    cardsList.addItem(createCard(item));
+  }
+}, cardsContainerSelector);
+
 
 
 //ВАЛИДАЦИЯ ФОРМ
@@ -141,24 +154,7 @@ const cardList = new Section ({
  
 
 
-const popupAddCardForm = new PopupWithForm(popupAddCardSelector, {
-  handleCardSubmit(){
-    //   evt.preventDefault();
-    //   // Вставляем новые здачения в place
-      const name = cardTitleInput.value;
-      const link = cardLinkInput.value;
-      const item = {
-          name, link
-      }
-      placesList.prepend(createCard(item));
-    
-      popupAddCard.close();
-    //   cardTitleInput.value = "";
-    //   cardLinkInput.value = "";
-    // }
-  }
-}, cardsContainerSelector);
-  
+
 
 const profileEditPopup = new PopupWithForm(popupProfileEditSelector, popupFormSelector)
 
@@ -243,11 +239,14 @@ editButton.addEventListener("click", () => {
   formValidators[ profileForm.name ].resetValidation();
 });
 addCardButton.addEventListener("click", () => {
-  popupAddCard.open();
+  popupAddCardForm.open();
   cardTitleInput.value = "";
   cardLinkInput.value = "";
   formValidators[ addCardForm.name ].resetValidation();
 });
+popupAddCardForm.setEventListeners();
+cardsList.renderItems();
+
 // profileForm.addEventListener("submit", setUserInfo);
 // addCardForm.addEventListener("submit", handleCardSubmit);
 
