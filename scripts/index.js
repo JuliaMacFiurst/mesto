@@ -90,10 +90,7 @@ const enableValidation = (validationConfig) => {
 
 enableValidation(validationConfig);
 
-const userInfo = new UserInfo({
-  name: profileNameSelector,
-  info: profileAboutSelector
-});
+
 
 function handleCardClick (name, link) {
   const popupWithImage = new PopupWithImage('.popup_open-image');
@@ -141,23 +138,37 @@ const cardsList = new Section({
   }
 }, ".places__list");
 
+const userInfo = new UserInfo({
+  name: profileNameSelector,
+  info: profileAboutSelector
+});
 
+const profileEditPopup = new PopupWithForm(
+  popupProfileEditSelector, {
+    handleSubmit: () => {
+      // nameInput.value = userInfo.getUserInfo().name;
+      // jobInput.value = userInfo.getUserInfo().info;
+      // // profileEditPopup.close();
+      const inputUserName = nameInput.value;
+      const inputUserInfo = jobInput.value;
 
-//ВАЛИДАЦИЯ ФОРМ
-// const profileFormValidator = new FormValidator(profileForm, validationConfig);
-// profileFormValidator.enableValidation();
-// const addCardFormValidator = new FormValidator(addCardForm, validationConfig);
-// addCardFormValidator.enableValidation();
+      userInfo.setUserInfo(inputUserName, inputUserInfo);
+      profileEditPopup.close();
+    }
+  });
 
-
- 
-
-
-
-
-const profileEditPopup = new PopupWithForm(popupProfileEditSelector, popupFormSelector)
-
-
+  function handleProfileSubmit() {
+    const userData = userInfo.getUserInfo();
+    nameInput.value = userData.name;
+    jobInput.value = userData.info;
+  }
+//// Функция-обработчик «отправки» формы профиля
+// function handleProfileSubmit(evt) {
+//   evt.preventDefault(); //Эта строчка отменяет стандартную отправку формы.
+//   //вставляем новые значения в profile
+//   nameValue.textContent = nameInput.value;
+//   jobValue.textContent = jobInput.value;
+//   closePopup(popupProfileEdit);
 
 //ПОПАП ДОБАВЛЕНИЯ КАРТОЧЕК
 // Функция обработчик "отправки" формы карточек
@@ -178,11 +189,10 @@ const profileEditPopup = new PopupWithForm(popupProfileEditSelector, popupFormSe
 
 // ПОПАП ПРОФИЛЯ
 // function setPopupProfile() {
-//   openPopup(popupProfileEdit);
 //   // Значениям инпутов присваиваем текстовые значения профайла
 //   // Чтобы функция значения заносила данные в форму
-//   nameInput.value = nameValue.textContent;
-//   jobInput.value = jobValue.textContent;
+//   nameInput.data = nameValue.textContent;
+//   jobInput.data = jobValue.textContent;
 // }
 
 //// Функция-обработчик «отправки» формы профиля
@@ -234,18 +244,19 @@ const profileEditPopup = new PopupWithForm(popupProfileEditSelector, popupFormSe
 
 //Слушатели
 editButton.addEventListener("click", () => {
-  setPopupProfile();
+  handleProfileSubmit();
   formValidators[ profileForm.name ].resetValidation();
+  profileEditPopup.open();
 });
 addCardButton.addEventListener("click", () => {
   popupAddCardForm.open();
-  cardTitleInput.value = "";
-  cardLinkInput.value = "";
+  // cardTitleInput.value = "";
+  // cardLinkInput.value = "";
   formValidators[ addCardForm.name ].resetValidation();
 });
 popupAddCardForm.setEventListeners();
 cardsList.renderItems();
-
+profileEditPopup.setEventListeners()
 // profileForm.addEventListener("submit", setUserInfo);
 // addCardForm.addEventListener("submit", handleCardSubmit);
 
