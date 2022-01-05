@@ -113,10 +113,10 @@ function createCard(item) {
   return cardElement;
 }
 
-initialCards.forEach((item) => {
-  // Добавляем в DOM
-  placesList.append(createCard(item));
-}); 
+// initialCards.forEach((item) => {
+//   // Добавляем в DOM
+//   placesList.append(createCard(item));
+// }); 
 
 // const cardRenderer = (item) => {
 //   // const cardElement = createCard(item);
@@ -125,12 +125,11 @@ initialCards.forEach((item) => {
 
 const popupAddCardForm = new PopupWithForm(
   popupAddCardSelector, 
-  { handleSubmit: (newValues) => {
-      const item = {
-        name: newValues.cardInputName,
-        link: newValues.cardInputLink
-      }
-      cardsList.addItem(createCard(item));
+  { handleSubmit: () => {
+      const inputImageName = cardTitleInput.value;
+      const inputImageLink = cardLinkInput.value;
+      const cardElement = createCard({ name:inputImageName, link:inputImageLink });
+      cardsList.addItem(cardElement, "prepend");
       popupAddCardForm.close()
   }
 });
@@ -140,7 +139,7 @@ const cardsList = new Section({
   renderer: (item) => {
     cardsList.addItem(createCard(item));
   }
-}, cardsContainerSelector);
+}, ".places__list");
 
 
 
