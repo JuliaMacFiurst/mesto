@@ -46,6 +46,7 @@ enableValidation(validationConfig);
 function handleCardClick (name, link) {
   const popupWithImage = new PopupWithImage(popupOpenImageSelector);
   popupWithImage.open(name, link); 
+  popupWithImage.setEventListeners();
 }
 
 
@@ -70,12 +71,12 @@ const cardsList = new Section({
 
 // ПОПАП ДОБАВЛЕНИЯ НОВОЙ КАРТОЧКИ
 
+
+
 const popupAddCardForm = new PopupWithForm(
   popupAddCardSelector, 
-  { handleSubmit: () => {
-      const inputImageName = cardTitleInput.value;
-      const inputImageLink = cardLinkInput.value;
-      const cardElement = createCard({ name:inputImageName, link:inputImageLink });
+  { handleSubmit: (data) => {
+      const cardElement = createCard({ name:data.cardTitle, link:data.cardLink });
       cardsList.addItem(cardElement, "prepend");
       popupAddCardForm.close()
   }
@@ -90,11 +91,8 @@ const userInfo = new UserInfo({
 
 const profileEditPopup = new PopupWithForm(
   popupProfileEditSelector, {
-    handleSubmit: () => {
-      const inputUserName = nameInput.value;
-      const inputUserInfo = jobInput.value;
-
-      userInfo.setUserInfo(inputUserName, inputUserInfo);
+    handleSubmit: (data) => {
+      userInfo.setUserInfo(data.userName, data.userAbout);
       profileEditPopup.close();
     }
   });
