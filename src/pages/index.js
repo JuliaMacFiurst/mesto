@@ -43,10 +43,11 @@ enableValidation(validationConfig);
 
 // ПОПАП ОТКРЫТИЯ КАРТИНКИ
 
+const popupWithImage = new PopupWithImage(popupOpenImageSelector);
+popupWithImage.setEventListeners();
+
 function handleCardClick (name, link) {
-  const popupWithImage = new PopupWithImage(popupOpenImageSelector);
   popupWithImage.open(name, link); 
-  popupWithImage.setEventListeners();
 }
 
 
