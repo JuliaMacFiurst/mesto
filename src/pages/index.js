@@ -6,6 +6,7 @@ import Section from '../components/Section.js'
 import PopupWithImage from '../components/PopupWithImage.js'
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
+import Api from '../components/Api.js'
 
 import {
   editButton,
@@ -17,7 +18,7 @@ import {
   cardTitleInput,
   cardLinkInput,
   validationConfig,
-  initialCards,
+  // initialCards,
   cardTemplate,
   cardsContainerSelector,
   popupOpenImageSelector,
@@ -27,6 +28,38 @@ import {
   profileAboutSelector,
   formValidators
 } from '../utils/constants.js'
+
+// fetch('https://mesto.nomoreparties.co/v1/cohort-34/cards', {
+//   headers: {
+//     authorization: 'ca130fc9-c3f6-47a9-975b-5e5cd566bdde'
+//   }
+// })
+//   .then(res => res.json())
+//   .then(data => {
+//     console.log(data);
+//   })
+//   .catch(err => console.log(err));
+
+const api = new Api ({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-34',
+  headers: {
+  authorization: 'ca130fc9-c3f6-47a9-975b-5e5cd566bdde',
+  'Content-Type': 'application/json'
+  }
+});
+
+getDataFromApi();
+
+function getDataFromApi() {
+    api.getAllData()
+      .then(([data]) => {
+        cardsList.renderItems(data)
+      })
+      .catch(err => {
+        console.log(`Ошибка загрузки данных: ${err}`)
+      })
+  }
+
 
 // Включение валидации
 const enableValidation = (validationConfig) => {
@@ -63,12 +96,13 @@ function createCard(item) {
   return cardElement;
 }
 
-const cardsList = new Section({
-  items: initialCards,
+export const cardsList = new Section({
   renderer: (item) => {
     cardsList.addItem(createCard(item));
   }
 }, cardsContainerSelector);
+
+
 
 // ПОПАП ДОБАВЛЕНИЯ НОВОЙ КАРТОЧКИ
 
