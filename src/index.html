@@ -63,6 +63,34 @@
         <p class="footer__copyrights">&copy; 2021 Mesto Russia</p>
       </footer>
 
+      <div class="popup popup_avatar">
+        <div class="page__container">
+          <h2 class="popup__title">Обновить аватар</h2>
+          <form 
+              class="popup__form" 
+              name="editAvatar"
+              novalidate>
+              <input 
+              type="url"
+              name="avatarLink"
+              class="popup__input popup__input_type_avatar"
+              id="avatar-link"
+              placeholder="Ссылка на картинку"
+              required>
+              <span class="popup__input-error about-input-error" ></span>
+              <button 
+                type="submit" 
+                class="popup__sbmt-button">
+                Сохранить</button>
+            </form>
+            <button 
+            class="button popup__close-button"
+            type="button"
+            aria-label="Закрыть редактирование аватара">
+          </button>
+        </div>
+      </div>
+
       <div class="popup popup_profile-edit">
         <div class="popup__container">
           <h2 class="popup__title">Редактировать профиль</h2>
@@ -148,6 +176,16 @@
           <figcaption class="popup__caption"></figcaption>
           <button type="button" class="button popup__close-button" aria-label="Закрыть картинку"></button>
         </figure>
+    </div>
+
+    <div class="popup popup_confirm-delete">
+      <div class="popup__container">
+        <form class="popup__form" name="popupForm" novalidate>
+          <h2 class="popup__title">Вы уверены?</h2>
+          <button type="submit" class="popup__button">Да</button>
+        </form>
+        <button type="button" class="button popup__close-button" aria-label="Закрыть"></button>
+      </div>
     </div>
 
     <template class="card-template">
