@@ -52,8 +52,9 @@ getDataFromApi();
 
 function getDataFromApi() {
     api.getAllData()
-      .then(([data]) => {
-        cardsList.renderItems(data)
+      .then(([data, userData]) => {
+        cardsList.renderItems(data, userData._id)
+        userInfo.setUserInfo(userData.name, userData.about)
       })
       .catch(err => {
         console.log(`Ошибка загрузки данных: ${err}`)
@@ -96,9 +97,9 @@ function createCard(item) {
   return cardElement;
 }
 
-export const cardsList = new Section({
-  renderer: (item) => {
-    cardsList.addItem(createCard(item));
+const cardsList = new Section({
+  renderer: (data, userId) => {
+    cardsList.addItem(createCard(data, userId));
   }
 }, cardsContainerSelector);
 
@@ -121,7 +122,7 @@ const popupAddCardForm = new PopupWithForm(
 
 const userInfo = new UserInfo({
   name: profileNameSelector,
-  info: profileAboutSelector
+  about: profileAboutSelector
 });
 
 const profileEditPopup = new PopupWithForm(
@@ -135,7 +136,7 @@ const profileEditPopup = new PopupWithForm(
   function handleProfileSubmit() {
     const userData = userInfo.getUserInfo();
     nameInput.value = userData.name;
-    jobInput.value = userData.info;
+    jobInput.value = userData.about;
   }
 
 //Слушатели
@@ -149,5 +150,4 @@ addCardButton.addEventListener("click", () => {
   formValidators[ addCardForm.name ].resetValidation();
 });
 popupAddCardForm.setEventListeners();
-cardsList.renderItems();
 profileEditPopup.setEventListeners();

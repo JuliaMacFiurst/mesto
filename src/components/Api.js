@@ -13,11 +13,19 @@ export default class Api {
     }
 
     getAllData() {
-        return Promise.all([this._getInitialCards()])
+        return Promise.all([this._getInitialCards(),  this._getUserInfo()])
     }
 
     _getInitialCards() {
         return fetch(this._url + '/cards', {
+            headers: this._headers,
+        })
+        .then(res => {
+            return this._checkResponse(res)
+        })
+    }
+    _getUserInfo() {
+        return fetch(this._url + '/users/me', {
             headers: this._headers,
         })
         .then(res => {
