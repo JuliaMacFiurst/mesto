@@ -29,11 +29,17 @@
       </header>
       <main class="main">
         <section class="profile page__profile">
-          <img
-            class="profile__avatar"
-            src="<%=require('./images/profile_avatar.jpg')%>"
-            alt="Аватар путешественника"
-          />
+          <div class="profile__avatar-container" >
+             <img
+               class="profile__avatar"
+               src="<%=require('./images/profile_avatar.jpg')%>"
+               alt="Аватар путешественника"
+             />
+             <button 
+             class="profile__avatar-edit-button"
+             type="button" 
+             aria-label="Изменить аватар"></button>
+        </div>
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <button 
