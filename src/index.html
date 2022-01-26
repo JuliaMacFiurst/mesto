@@ -193,12 +193,15 @@
         <img class="place__photo popup__open-button" src="#" alt="#" style="cursor: zoom-in;"/>
         <div class="place__description">
           <h2 class="place__title"></h2>
-          <button 
-            class="place__like-button"
-            type="button"
-            aria-label="Нравится">
-          </button>
-        </div>
+          <div class="place__like-container">
+            <button 
+              class="place__like-button"
+              type="button"
+              aria-label="Нравится">
+            </button>
+            <span class="place__like-count">0</span>
+         </div>
+         </div>
         <button class="button place__remove-button"></button>
       </li>
     </template>
