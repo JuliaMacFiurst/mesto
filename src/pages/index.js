@@ -131,7 +131,11 @@ const userInfo = new UserInfo({
 const profileEditPopup = new PopupWithForm(
   popupProfileEditSelector, {
     handleSubmit: (data) => {
-      userInfo.setUserInfo(data.userName, data.userAbout);
+      api.setUserInfoApi(data.userName, data.userAbout)
+      .then((name, about) => {
+        userInfo.setUserInfo(name, about);
+        
+      })
       profileEditPopup.close();
     }
   });

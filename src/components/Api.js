@@ -32,5 +32,18 @@ export default class Api {
             return this._checkResponse(res)
         })
     }
+    setUserInfoApi(name, about) {
+        return fetch(this._url + '/users/me', {
+            method: 'PATCH',
+            headers: this._headers,
+            body: JSON.stringify({
+                name,
+                about
+        })
+    })
+        .then(res => {
+            return this._checkResponse(res)
+        })
+}
 }
 
