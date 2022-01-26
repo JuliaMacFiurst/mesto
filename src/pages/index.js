@@ -87,13 +87,20 @@ function handleCardClick (name, link) {
 }
 
 
-function createCard(item) {
+
+function createCard(data) {
   // Создадим экземпляр карточки
-  const card = new Card(
-    item.name,
-     item.link,
-      cardTemplate,
-       handleCardClick);
+  const card = new Card
+  (
+  { 
+      data,
+      handleCardClick,
+      handleLike: () => card.handleLikeClick()
+    },
+       cardTemplate,
+       api
+       );
+
   // Создаём карточку и возвращаем наружу
   const cardElement = card.generateCard();
   return cardElement;

@@ -1,11 +1,17 @@
 export default class Card {
-    constructor(name, link, cardTemplate, handleCardClick, popupOpenImage, placesList) {
-        this._name = name;
-        this._link = link;
-        this._cardTemplate = cardTemplate;
+    constructor({ data, handleCardClick, handleLike }, cardTemplate, api, popupOpenImage, placesList) {
+        this._name = data.name;
+        this._link = data.link;
+        
         this.handleCardClick = handleCardClick;
+        this._handleLike = handleLike;
+
+        this._cardTemplate = cardTemplate;
         this._popupOpenImage = popupOpenImage;
         this._placesList = placesList;
+        this._api = api;
+
+        this._cardId = data._id; 
 
         
     }
@@ -21,7 +27,7 @@ export default class Card {
    
     _setEventListeners() {
         this._likeButton.addEventListener('click', () => {
-        this._handleLikeClick();
+        this._handleLike();
         });
         this._removeButton.addEventListener('click', () => {
         this._handleDeleteClick();
@@ -30,8 +36,26 @@ export default class Card {
         this.handleCardClick(this._name, this._link);
       });
 }
-    _handleLikeClick() {
-        this._likeButton.classList.toggle('place__like-button_active');
+    handleLikeClick() {
+        if(!(this._likeButton.classList.contains('place__like-button_active'))) {
+            this._api.like(this._cardId)
+                .then((data) => {
+                    this._likeButton.classList.add('place__like-button_active')
+                    this._likeCount.textContent = data.likes.length
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        } else {
+            this._api.dislike(this._cardId)
+                .then((data) => {
+                    this._likeButton.classList.remove('place__like-button_active')
+                    this._likeCount.textContent = data.likes.length
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        }
 } 
     _handleDeleteClick() {
         this._element.remove();
@@ -45,6 +69,7 @@ export default class Card {
         this._placeTitle = this._element.querySelector('.place__title');
         this._placePhoto = this._element.querySelector('.place__photo');
         this._likeButton = this._element.querySelector('.place__like-button');
+        this._likeCount = this._element.querySelector('.place__like-count');
         this._removeButton = this._element.querySelector('.place__remove-button');
         
         this._placePhoto.src = this._link;

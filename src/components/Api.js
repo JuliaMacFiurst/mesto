@@ -59,4 +59,24 @@ export default class Api {
             return this._checkResponse(res)
         })  
     }
+
+    like(_id) {
+        return fetch(this._url + `/cards/likes/${_id}`, {
+            method: 'PUT',
+            headers: this._headers,
+        })
+        .then(res => {
+            return this._checkResponse(res)
+    })
+    }
+
+    dislike(_id) {
+        return fetch(this._url + `/cards/likes/${_id}`, {
+            method: 'DELETE',
+            headers: this._headers,
+        })
+        .then(res => {
+            return this._checkResponse(res)
+    })
+    }
 }
