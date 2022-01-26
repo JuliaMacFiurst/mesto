@@ -1,3 +1,9 @@
+// Находим элементы для попапа смены аватара
+export const profileAvatar = document.querySelector(".profile__avatar"); // аватар пользователя
+export const popupAvatar = document.querySelector(".popup_avatar"); // попап смены аватара
+export const avatarForn = popupAvatar.querySelector(".popup__form"); // форма попапа аватара
+export const avatarEditButton = document.querySelector(".profile__avatar-edit-button") // кнопка на аватаре
+
 //Находим элементы в DOM для попапа профиля
 export const editButton = document.querySelector(".profile__edit-button"); // кнопка открытия попапа профиля
 export const profileForm = document.querySelector(".popup__form"); // форма попапа профиля
@@ -57,5 +63,6 @@ export const popupAddCardSelector = ".popup_add-card" // селектор поп
 export const popupProfileEditSelector = ".popup_profile-edit" // селектор попапа профиля
 export const profileNameSelector = ".profile__name" // селектор поля имени пользователя
 export const profileAboutSelector = ".profile__about" // селектор поля информации о пользователе
+export const profileAvatarSelector = ".profile__avatar" //селектор поля аватара пользователя
 
 export const formValidators = {}

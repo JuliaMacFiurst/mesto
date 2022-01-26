@@ -26,6 +26,7 @@ import {
   popupProfileEditSelector,
   profileNameSelector,
   profileAboutSelector,
+  profileAvatarSelector,
   formValidators
 } from '../utils/constants.js'
 
@@ -53,8 +54,9 @@ getDataFromApi();
 function getDataFromApi() {
     api.getAllData()
       .then(([data, userData]) => {
-        cardsList.renderItems(data, userData._id)
-        userInfo.setUserInfo(userData.name, userData.about)
+        cardsList.renderItems(data, userData._id);
+        userInfo.setUserInfo(userData.name, userData.about);
+        userInfo.setAvatar(userData.avatar);
       })
       .catch(err => {
         console.log(`Ошибка загрузки данных: ${err}`)
@@ -122,7 +124,8 @@ const popupAddCardForm = new PopupWithForm(
 
 const userInfo = new UserInfo({
   name: profileNameSelector,
-  about: profileAboutSelector
+  about: profileAboutSelector,
+  avatar: profileAvatarSelector
 });
 
 const profileEditPopup = new PopupWithForm(
