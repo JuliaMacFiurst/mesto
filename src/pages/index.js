@@ -114,8 +114,12 @@ const cardsList = new Section({
 const popupAddCardForm = new PopupWithForm(
   popupAddCardSelector, 
   { handleSubmit: (data) => {
-      const cardElement = createCard({ name:data.cardTitle, link:data.cardLink });
-      cardsList.addItem(cardElement, "prepend");
+      api.addUserCard(data.cardTitle, data.cardLink)
+      .then(() => {
+        const cardElement = createCard({ name:data.cardTitle, link:data.cardLink });
+        cardsList.addItem(cardElement, "prepend");
+      })
+      
       popupAddCardForm.close()
   }
 });
@@ -130,12 +134,12 @@ const userInfo = new UserInfo({
 
 const profileEditPopup = new PopupWithForm(
   popupProfileEditSelector, {
-    handleSubmit: (data) => {
+    handleSubmit: (data) => {  
       api.setUserInfoApi(data.userName, data.userAbout)
       .then((name, about) => {
-        userInfo.setUserInfo(name, about);
-        
+        userInfo.setUserInfo(name, about);  
       })
+      .catch((err) => console.log(err))
       profileEditPopup.close();
     }
   });

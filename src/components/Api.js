@@ -44,6 +44,19 @@ export default class Api {
         .then(res => {
             return this._checkResponse(res)
         })
-}
-}
+    }
 
+    addUserCard(name, link) {
+        return fetch(this._url + '/cards', {
+            method: 'POST',
+            headers: this._headers,
+            body: JSON.stringify({
+                name,
+                link
+        })
+    })
+        .then(res => {
+            return this._checkResponse(res)
+        })  
+    }
+}
