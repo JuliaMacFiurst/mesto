@@ -7,6 +7,7 @@ import PopupWithImage from '../components/PopupWithImage.js'
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js'
+import PopupConfirmDelete from '../components/PopupConfirmDelete.js';
 
 import {
   editButton,
@@ -27,7 +28,11 @@ import {
   profileNameSelector,
   profileAboutSelector,
   profileAvatarSelector,
-  formValidators
+  formValidators,
+  popupConfirmDelete,
+  deleteButton,
+  confirmDeleteForm,
+  popupConfirmDeleteSelector
 } from '../utils/constants.js'
 
 // fetch('https://mesto.nomoreparties.co/v1/cohort-34/cards', {
@@ -40,6 +45,8 @@ import {
 //     console.log(data);
 //   })
 //   .catch(err => console.log(err));
+
+let cardItem = null;
 
 const api = new Api ({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-34',
@@ -86,7 +93,21 @@ function handleCardClick (name, link) {
   popupWithImage.open(name, link); 
 }
 
-
+const popupWithConfirm = new PopupConfirmDelete(
+  popupConfirmDeleteSelector, 
+  {
+    handleSubmit: (data) => {
+      api.deleteCard(data)
+        .then(() => {
+          cardItem.deleteCard();
+        })
+        .then(() => {
+          cardItem = null;
+        })
+        .catch((err) => console.log(err))
+        popupConfirmDelete.close(data);
+    }  
+  })
 
 function createCard(data) {
   // Создадим экземпляр карточки
@@ -95,7 +116,11 @@ function createCard(data) {
   { 
       data,
       handleCardClick,
-      handleLike: () => card.handleLikeClick()
+      handleLike: () => card.handleLikeClick(),
+      handleDelete: () => {
+        cardItem = card;
+        popupWithConfirm.open()
+      }
     },
        cardTemplate,
        api

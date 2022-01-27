@@ -79,4 +79,15 @@ export default class Api {
             return this._checkResponse(res)
     })
     }
+
+    deleteCard(cardId) {
+        return fetch(this._url + `/cards/${cardId}`, {
+            method: 'DELETE',
+            headers: this._headers,
+        })
+        .then(res => {
+            return this._checkResponse(res)
+    })
+    }
+
 }

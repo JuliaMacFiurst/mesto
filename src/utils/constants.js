@@ -17,6 +17,12 @@ export const addCardForm = popupAddCard.querySelector(".popup__form"); // фор
 export const cardTitleInput = addCardForm.querySelector(".popup__input_type_card-title"); // инпут названия карточки
 export const cardLinkInput = addCardForm.querySelector(".popup__input_type_card-link"); // инпут изображения карточки
 
+//Находим элементы в DOM для попапа удаления карточек
+
+export const popupConfirmDelete = document.querySelector(".popup_confirm-delete"); // попап удаления карточек
+export const deleteButton = document.querySelector(".place__remove-button"); // кнопка удаления карточки
+export const confirmDeleteForm = popupConfirmDelete.querySelector(".popup__form"); // форма попапа удаления
+
 // Объект с коллекцией всех классов неoбходимых для валидации
 export const validationConfig = {
   formSelector: ".popup__form",
@@ -64,5 +70,5 @@ export const popupProfileEditSelector = ".popup_profile-edit" // селекто�
 export const profileNameSelector = ".profile__name" // селектор поля имени пользователя
 export const profileAboutSelector = ".profile__about" // селектор поля информации о пользователе
 export const profileAvatarSelector = ".profile__avatar" //селектор поля аватара пользователя
-
+export const popupConfirmDeleteSelector = ".popup_confirm-delete" //селектор попапа удаления карточки
 export const formValidators = {}
