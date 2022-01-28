@@ -3,6 +3,8 @@ export default class Card {
         this._name = data.name;
         this._link = data.link;
         
+
+        
         this.handleCardClick = handleCardClick;
         this._handleLike = handleLike;
         this._handleDelete = handleDelete;
@@ -11,8 +13,11 @@ export default class Card {
         this._popupOpenImage = popupOpenImage;
         this._placesList = placesList;
         this._api = api;
-
+        
+        this._ownerId = data.owner._id;
         this._cardId = data._id; 
+        
+        
 
         
     }
@@ -58,11 +63,13 @@ export default class Card {
                 })
         }
 } 
-    _handleDeleteClick() {
+    handleDeleteClick() {
         this._element.remove();
     }
+
+
     
-    generateCard() {
+    generateCard(userId) {
         // Запишем разметку в приватное поле _element. 
         // Так у других элементов появится доступ к ней.
         this._element = this._getTemplate();
@@ -72,6 +79,10 @@ export default class Card {
         this._likeButton = this._element.querySelector('.place__like-button');
         this._likeCount = this._element.querySelector('.place__like-count');
         this._removeButton = this._element.querySelector('.place__remove-button');
+
+        if(!(this._ownerId === userId)) {
+            this._removeButton.style.display = "none"
+        }
         
         this._placePhoto.src = this._link;
         this._placeTitle.alt = this._name;

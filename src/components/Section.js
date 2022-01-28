@@ -11,9 +11,9 @@ export default class Section {
     //       });
     //     }
 
-    renderItems(data, userId) {
+    renderItems(data) {
       data.forEach(item => {
-          this._renderer(item, userId); // вызываем renderer, передав item
+          this._renderer(item); // вызываем renderer, передав item
         });
       }
 
