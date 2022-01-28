@@ -1,5 +1,5 @@
 export default class Card {
-    constructor({ data, handleCardClick, handleLike, handleDelete }, cardTemplate, api, popupOpenImage, placesList) {
+    constructor({ data, handleCardClick, handleLike, handleDelete }, cardTemplate, api, popupOpenImage, popupConfirmDelete, placesList) {
         this._name = data.name;
         this._link = data.link;
         
@@ -11,15 +11,13 @@ export default class Card {
 
         this._cardTemplate = cardTemplate;
         this._popupOpenImage = popupOpenImage;
+        this._popupConfirmDelete = popupConfirmDelete;
         this._placesList = placesList;
         this._api = api;
         
         this._ownerId = data.owner._id;
         this._cardId = data._id; 
-        
-        
 
-        
     }
     _getTemplate() {
         // забираем разметку из HTML и клонируем элемент
@@ -64,9 +62,16 @@ export default class Card {
         }
 } 
     handleDeleteClick() {
-        this._element.remove();
-    }
+        // this._element.remove();
 
+        this._api.deleteCard(this._cardId)
+            .then(() => {
+            this._element.remove();
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+}
 
     
     generateCard(userId) {
@@ -94,5 +99,8 @@ export default class Card {
             return this._element;
 
     }
+
+    
+
   
     }

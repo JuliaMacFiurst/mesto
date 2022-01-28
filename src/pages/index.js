@@ -97,6 +97,7 @@ function handleCardClick(name, link) {
 
 const popupWithConfirm = new PopupConfirmDelete(popupConfirmDeleteSelector);
 popupWithConfirm.setEventListeners();
+
  
 
   // {
@@ -118,18 +119,21 @@ function createCard(data) {
   const card = new Card
   (
   { 
-      data,
+      data: data,
       handleCardClick,
       handleLike: () => card.handleLikeClick(),
       handleDelete: () => {
-        popupWithConfirm.submitDeleteAction( () => {
-          api.deleteCard(data._id)
-          .then( () => {
-            card.handleDeleteClick()
-            popupWithConfirm.close()
-          })
-          .catch((err) => console.log(err))
-        })
+        // popupWithConfirm.submitDeleteAction();
+        card.handleDeleteClick()
+        // ( () => {
+        //   api.deleteCard(data._id)
+          
+        //   .then( () => {
+        //     card.handleDeleteClick()
+        //     popupWithConfirm.close()
+        //   })
+        //   .catch((err) => console.log(err))
+        // })
         popupWithConfirm.open()
       }
     },

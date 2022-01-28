@@ -6,10 +6,11 @@ export default class PopupConfirmDelete extends Popup {
 
         // this._handleSubmit = handleSubmit;
 
-        this._form = document.querySelector(".popup__form");
-        this._popupButton = this._form.querySelector(".place__remove-button");
+        this._form = this._popup.querySelector(".popup__form");
+        this._popupButton = this._form.querySelector(".popup__sbmt-button");
         // this._popupButtonTextContent = this._popupButton.textContent;
         // this._submitDelete = this._submitDelete.bind(this);
+        // console.log(this._form)
     }
 
     setEventListeners() {
