@@ -6,8 +6,8 @@ export default class Card {
 
         
         this.handleCardClick = handleCardClick;
-        this._handleLike = handleLike;
-        this._handleDelete = handleDelete;
+        //this._handleLike = handleLike;
+        //this._handleDelete = handleDelete;
 
         this._cardTemplate = cardTemplate;
         this._popupOpenImage = popupOpenImage;
@@ -62,15 +62,15 @@ export default class Card {
         }
 } 
     handleDeleteClick() {
-        // this._element.remove();
+        this._element.remove();
 
-        this._api.deleteCard(this._cardId)
-            .then(() => {
-            this._element.remove();
-        })
-        .catch((err) => {
-            console.log(err)
-        })
+        // this._api.deleteCard(this._cardId)
+        //     .then(() => {
+        //     this._element.remove();
+        // })
+        // .catch((err) => {
+        //     console.log(err)
+        // })
 }
 
     
@@ -96,7 +96,7 @@ export default class Card {
             
         this._setEventListeners();
 
-            return this._element;
+        return this._element;
 
     }
 

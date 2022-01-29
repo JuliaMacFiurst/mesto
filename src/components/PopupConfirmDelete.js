@@ -4,7 +4,8 @@ export default class PopupConfirmDelete extends Popup {
     constructor(popupSelector) {
         super(popupSelector)
 
-        // this._handleSubmit = handleSubmit;
+//        this._handleSubmit = handleSubmit
+//        this._handleSubmit = this._handleSubmit.bind(this);
 
         this._form = this._popup.querySelector(".popup__form");
         this._popupButton = this._form.querySelector(".popup__sbmt-button");
@@ -17,10 +18,11 @@ export default class PopupConfirmDelete extends Popup {
         super.setEventListeners();
         this._form.addEventListener('submit', evt => {
             evt.preventDefault()
-            this._handleSubmit
+            this._handleSubmit()
         })
     }
 
+    
     submitDeleteAction(action) {
         this._handleSubmit = action
         // evt.preventDefault();
@@ -28,7 +30,6 @@ export default class PopupConfirmDelete extends Popup {
         // this._form.removeEventListener('submit', this._submitDelete)
     }
 
-    
 
 
 }

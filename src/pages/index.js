@@ -121,29 +121,30 @@ function createCard(data) {
   { 
       data: data,
       handleCardClick,
-      handleLike: () => card.handleLikeClick(),
-      handleDelete: () => {
-        // popupWithConfirm.submitDeleteAction();
+  },
+      cardTemplate,
+      api
+  );
+  
+  card._handleLike = () => card.handleLikeClick();
+  card._handleDelete = () => {
+    popupWithConfirm.submitDeleteAction(
+      () => {
+        api.deleteCard(data._id)
+        .then(() => {
         card.handleDeleteClick()
-        // ( () => {
-        //   api.deleteCard(data._id)
-          
-        //   .then( () => {
-        //     card.handleDeleteClick()
-        //     popupWithConfirm.close()
-        //   })
-        //   .catch((err) => console.log(err))
-        // })
-        popupWithConfirm.open()
+        popupWithConfirm.close()
+      })
+        .catch(err => {console.log(err)})
       }
-    },
-       cardTemplate,
-       api
-       );
-       
+
+    )
+    popupWithConfirm.open()
+  }
 
   // Создаём карточку и возвращаем наружу
   const cardElement = card.generateCard(userId);
+
   // console.log(userInfo.setUserId())
   return cardElement;
 }
@@ -162,8 +163,11 @@ const popupAddCardForm = new PopupWithForm(
   popupAddCardSelector, 
   { handleSubmit: (data) => {
       api.addUserCard(data.cardTitle, data.cardLink)
-      .then(() => {
-        const cardElement = createCard({ name:data.cardTitle, link:data.cardLink });
+      .then(( res ) => {
+// likes: [], _id: "61f532d078c41501972df434", name: "TEST", link: "https://images.unsplash.com/photo-1472457897821-70d3819a0e24…G90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80", owner: {…}, createdAt: "2022-01-29T12:28:00.801Z" }
+        console.log(res);
+        const cardElement = createCard(res);
+        //const cardElement = createCard({ name:data.cardTitle, link:data.cardLink });
         cardsList.addItem(cardElement, "prepend");
       })
       
@@ -184,7 +188,7 @@ const profileEditPopup = new PopupWithForm(
   popupProfileEditSelector, {
     handleSubmit: (data) => {  
       api.setUserInfoApi(data.userName, data.userAbout)
-      .then((name, about) => {
+      .then((data) => {
         userInfo.setUserInfo(data);  
       })
       .catch((err) => console.log(err))
