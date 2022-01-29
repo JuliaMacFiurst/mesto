@@ -28,6 +28,7 @@ import {
   profileNameSelector,
   profileAboutSelector,
   profileAvatarSelector,
+  popupAvatarSelector,
   formValidators,
   popupConfirmDelete,
   deleteButton,
@@ -202,7 +203,18 @@ const profileEditPopup = new PopupWithForm(
     jobInput.value = userData.about;
   }
   
-
+  const popupEditAvatar = new PopupWithForm(
+    popupAvatarSelector,
+    { handleSubmit: (data) => {
+      api.setUserAvatar(data)
+        .then((data) => {
+          userInfo.setAvatar(data)
+          popupEditAvatar.close()
+        })
+        .catch((err) => console.log(err))
+    }
+  });
+  popupEditAvatar.setEventListeners();
 //Слушатели
 editButton.addEventListener("click", () => {
   handleProfileSubmit();
@@ -213,5 +225,9 @@ addCardButton.addEventListener("click", () => {
   popupAddCardForm.open();
   formValidators[ addCardForm.name ].resetValidation();
 });
+avatarEditButton.addEventListener("click", () => {
+  popupEditAvatar.open();
+  formValidators[ editAvatar.name ].resetValidation();
+})
 popupAddCardForm.setEventListeners();
 profileEditPopup.setEventListeners();

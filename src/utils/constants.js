@@ -70,5 +70,6 @@ export const popupProfileEditSelector = ".popup_profile-edit" // селекто�
 export const profileNameSelector = ".profile__name" // селектор поля имени пользователя
 export const profileAboutSelector = ".profile__about" // селектор поля информации о пользователе
 export const profileAvatarSelector = ".profile__avatar" //селектор поля аватара пользователя
+export const popupAvatarSelector = ".popup_avatar" // селектор попапа аватара
 export const popupConfirmDeleteSelector = ".popup_confirm-delete" //селектор попапа удаления карточки
 export const formValidators = {}

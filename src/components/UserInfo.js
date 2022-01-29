@@ -17,10 +17,10 @@ export default class UserInfo {
     setUserInfo(data) {
         this._profileName.textContent = data.name;
         this._profileInfo.textContent = data.about;
-        // this.setAvatar(data.avatar);
+        this.setAvatar(data.avatar);
     }
 
-    setAvatar(avatar) {
-        this._profileAvatar.src = avatar;
+    setAvatar(data) {
+        this._profileAvatar.src = data.avatar;
     }
 }

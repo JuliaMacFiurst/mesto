@@ -91,4 +91,18 @@ export default class Api {
     })
     }
 
+    setUserAvatar(data) {
+        return fetch(this._url + '/users/me/avatar', {
+            method: 'PATCH',
+            headers: this._headers,
+            body: JSON.stringify({
+                avatar: data.userAvatar
+            })
+        })
+        .then(res => {
+            return this._checkResponse(res)
+            
+    })
+    }
+
 }
