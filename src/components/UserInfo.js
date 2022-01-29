@@ -20,7 +20,7 @@ export default class UserInfo {
         this.setAvatar(data.avatar);
     }
 
-    setAvatar(data) {
-        this._profileAvatar.src = data.avatar;
+    setAvatar(url) {
+        this._profileAvatar.src = url;
     }
 }

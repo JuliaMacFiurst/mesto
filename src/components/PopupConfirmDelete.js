@@ -3,15 +3,9 @@ import Popup from "./Popup.js";
 export default class PopupConfirmDelete extends Popup {
     constructor(popupSelector) {
         super(popupSelector)
-
-//        this._handleSubmit = handleSubmit
-//        this._handleSubmit = this._handleSubmit.bind(this);
-
         this._form = this._popup.querySelector(".popup__form");
         this._popupButton = this._form.querySelector(".popup__sbmt-button");
-        // this._popupButtonTextContent = this._popupButton.textContent;
-        // this._submitDelete = this._submitDelete.bind(this);
-        // console.log(this._form)
+        this._popupButtonTextContent = this._popupButton.textContent;
     }
 
     setEventListeners() {
@@ -25,11 +19,15 @@ export default class PopupConfirmDelete extends Popup {
     
     submitDeleteAction(action) {
         this._handleSubmit = action
-        // evt.preventDefault();
-        // this._handleSubmit(this._data)
-        // this._form.removeEventListener('submit', this._submitDelete)
+        
     }
 
-
+    renderDeletionLoading(isLoading) {
+        if(isLoading) {
+          this._popupButton.textContent = 'Сохранение...'
+        } else {
+          this._popupButton.textContent = this._popupButtonTextContent
+        }
+      }
 
 }
