@@ -1,11 +1,10 @@
 export default class Card {
-    constructor({ data, handleCardClick }, cardTemplate, api, popupOpenImage, popupConfirmDelete, placesList) {
+    constructor({ data, handleCardClick, handleDelete }, cardTemplate, api, popupOpenImage, popupConfirmDelete, placesList) {
         this._name = data.name;
         this._link = data.link;
-        
-
-        
+           
         this.handleCardClick = handleCardClick;
+        this._handleDelete = handleDelete;
 
         this._cardTemplate = cardTemplate;
         this._popupOpenImage = popupOpenImage;
@@ -29,7 +28,7 @@ export default class Card {
    
     _setEventListeners() {
         this._likeButton.addEventListener('click', () => {
-        this._handleLike();
+        this.handleLikeClick();
         });
         this._removeButton.addEventListener('click', () => {
         this._handleDelete();

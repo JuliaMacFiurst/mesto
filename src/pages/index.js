@@ -92,30 +92,47 @@ function createCard(data) {
   { 
       data: data,
       handleCardClick,
+      handleDelete() {
+        popupWithConfirm.setSubmitAction(
+          () => {
+            popupWithConfirm.renderDeletionLoading(true)
+            api.deleteCard(data._id)
+            .then(() => {
+            card.handleDeleteClick()
+            popupWithConfirm.close()
+          })
+            .catch(err => {console.log(err)})
+            .finally(() => {
+              popupWithConfirm.renderDeletionLoading(false)
+              
+            })
+          }
+        )
+        popupWithConfirm.open()
+      }
   },
       cardTemplate,
       api
   );
   
-  card._handleLike = () => card.handleLikeClick();
-  card._handleDelete = () => {
-    popupWithConfirm.submitDeleteAction(
-      () => {
-        popupWithConfirm.renderDeletionLoading(true)
-        api.deleteCard(data._id)
-        .then(() => {
-        card.handleDeleteClick()
-        
-      })
-        .catch(err => {console.log(err)})
-        .finally(() => {
-          popupWithConfirm.renderDeletionLoading(false)
-          popupWithConfirm.close()
-        })
-      }
-    )
-    popupWithConfirm.open()
-  }
+  // card.handleDelete = () => {
+  //   popupWithConfirm.setSubmitAction(
+  //     () => {
+  //       popupWithConfirm.renderDeletionLoading(true)
+  //       api.deleteCard(data._id)
+  //       .then(() => {
+  //       card.handleDeleteClick()
+  //       popupWithConfirm.close()
+  //     })
+  //       .catch(err => {console.log(err)})
+  //       .finally(() => {
+  //         popupWithConfirm.renderDeletionLoading(false)
+          
+  //       })
+  //     }
+  //   )
+  //   popupWithConfirm.open()
+  // }
 
   // Создаём карточку и возвращаем наружу
   const cardElement = card.generateCard(userId);
@@ -138,11 +155,11 @@ const popupAddCardForm = new PopupWithForm(
       .then(( res ) => {
         const cardElement = createCard(res);
         cardsList.addItem(cardElement, "prepend");
+        popupAddCardForm.close()
       })
       .catch((err) => console.log(err))
       .finally(() => {
         popupAddCardForm.renderLoading(false);
-        popupAddCardForm.close()
       }) 
   }
 });
@@ -156,11 +173,12 @@ const profileEditPopup = new PopupWithForm(
       api.setUserInfoApi(data.userName, data.userAbout)
       .then((data) => {
         userInfo.setUserInfo(data);  
+        profileEditPopup.close();
       })
       .catch((err) => console.log(err))
       .finally(() => {
       profileEditPopup.renderLoading(false)
-      profileEditPopup.close();
+      
     })
     }
   });

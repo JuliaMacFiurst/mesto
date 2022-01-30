@@ -17,14 +17,14 @@ export default class PopupConfirmDelete extends Popup {
     }
 
     
-    submitDeleteAction(action) {
+    setSubmitAction(action) {
         this._handleSubmit = action
         
     }
 
     renderDeletionLoading(isLoading) {
         if(isLoading) {
-          this._popupButton.textContent = 'Сохранение...'
+          this._popupButton.textContent = 'Удаление...'
         } else {
           this._popupButton.textContent = this._popupButtonTextContent
         }
